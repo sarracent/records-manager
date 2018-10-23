@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <ui:composition>
+
+        <p:dialog id="IncidenciasEditDlg" widgetVar="IncidenciasEditDialog" modal="false" resizable="false" appendTo="@(body)" header="#{bundle.EditIncidenciasTitle}">
+            <h:form id="IncidenciasEditForm" >
+                <h:panelGroup id="display">
+                    <h:panelGrid columns="2" rendered="#{incidenciasController.selected != null}">
+                        
+                        <p:outputLabel value="#{bundle.CreateIncidenciasLabel_observaciones}" for="observaciones" />
+                        <p:inputTextarea   id="observaciones" value="#{incidenciasController.selected.observaciones}" title="#{bundle.CreateIncidenciasTitle_observaciones}" required="true" requiredMessage="#{bundle.CreateIncidenciasRequiredMessage_observaciones}"/>
+                        <p:outputLabel value="Especialista" for="especialista" />
+                        <p:selectOneMenu style="width: 153px" id="especialista" value="#{incidenciasController.selected.especialistas}" required="true" requiredMessage="No se ha seleccionado especialista">
+
+                            <c:forEach items="#{usuariosController.itemsAvailableSelectOne}" var="usuarioItem">
+                                <c:if  test="#{usuarioItem.rol==rolController.items.get(0)}" transient="#{usuarioItem.rol==rolController.items.get(0)}">
+                                    <f:selectItem itemValue="#{usuarioItem.usuario}" itemLabel="#{usuarioItem.usuario}" /> 
+                                </c:if>
+                            </c:forEach>
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="Operario" for="operario" />
+
+                        <p:selectOneMenu style="width: 153px" id="operario" value="#{incidenciasController.selected.operario}" required="true" requiredMessage="No se ha seleccionado operario">
+
+                            <c:forEach items="#{usuariosController.itemsAvailableSelectOne}" var="usuarioItem">
+                                <c:if  test="#{usuarioItem.rol==rolController.items.get(1)}" transient="#{usuarioItem.rol==rolController.items.get(1)}">
+                                    <f:selectItem itemValue="#{usuarioItem.usuario}" itemLabel="#{usuarioItem.usuario}" /> 
+                                </c:if>
+                            </c:forEach>
+                        </p:selectOneMenu>
+                       
+                        <p:outputLabel value="#{bundle.CreateIncidenciasLabel_categoriaIncidencias}" for="categoriaIncidencias" />
+                        <p:selectOneMenu style="width: 153px" id="categoriaIncidencias" value="#{incidenciasController.selected.categoriaIncidencias}" required="true" requiredMessage="#{bundle.EditIncidenciasRequiredMessage_categoriaIncidencias}">
+                            <f:selectItems value="#{categoriaIncidenciasController.itemsAvailableSelectOne}"
+                                           var="categoriaIncidenciasItem"
+                                           itemValue="#{categoriaIncidenciasItem}"
+                                           itemLabel="#{categoriaIncidenciasItem.categoria}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="Contraseña de la firma digital" for="firmaEsp" />
+                        <p:password id="firmaEsp" style="width: 172px" value="#{incidenciasController.firma}" title="#{bundle.CreateIncidenciasTitle_observaciones}" required="true" requiredMessage="El campo Contraseña de la firma digital está vacío"/>
+                      
+                    </h:panelGrid>
+                    <p:commandButton actionListener="#{incidenciasController.updateCid()}" value="#{bundle.Save}" update="display,:IncidenciasListForm:datalist,:growl" oncomplete="handleSubmit(args, 'IncidenciasEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="IncidenciasEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+    </ui:composition>
+</html>

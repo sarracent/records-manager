@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="HddCreateDlg" widgetVar="HddCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateHddTitle}">
+            <h:form id="HddCreateForm">
+                <h:panelGroup id="display">
+                    <h:panelGrid columns="2" rendered="#{hddController.selected != null}">
+                         <p:outputLabel value="#{bundle.CreateHddLabel_marca}" for="marca" />
+                        <p:inputText id="marca" value="#{hddController.selected.marca}" title="#{bundle.CreateHddTitle_marca}" />
+                        <p:outputLabel value="#{bundle.CreateHddLabel_modelo}" for="modelo" />
+                        <p:inputText id="modelo" value="#{hddController.selected.modelo}" title="#{bundle.CreateHddTitle_modelo}"/>
+                        <p:outputLabel value="#{bundle.CreateHddLabel_noSerie}" for="noSerie" />
+                        <p:inputText id="noSerie" value="#{hddController.selected.noSerie}" title="#{bundle.CreateHddTitle_noSerie}"/>
+                        <p:outputLabel value="#{bundle.CreateHddLabel_capacidad}" for="capacidad" />
+                        <p:inputText id="capacidad" value="#{hddController.selected.capacidad}" title="#{bundle.CreateHddTitle_capacidad}" required="true" requiredMessage="#{bundle.CreateHddRequiredMessage_capacidad}"/>
+                        
+                        
+                    </h:panelGrid>
+                    <p:commandButton actionListener="#{hddController.createCid(computadoraController.computadora)}" value="#{bundle.Save}" update="display,:HddListForm:datalist,:growl" oncomplete="handleSubmit(args,'HddCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="HddCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

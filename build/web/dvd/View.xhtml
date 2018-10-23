@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DvdViewDlg" widgetVar="DvdViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewDvdTitle}">
+            <h:form id="DvdViewForm">
+                <h:panelGroup id="display">
+                    <h:panelGrid columns="2" rendered="#{dvdController.selected != null}">
+                        <h:outputText value="#{bundle.ViewDvdLabel_modelo}"/>
+                        <h:outputText value="#{dvdController.selected.modelo}" title="#{bundle.ViewDvdTitle_modelo}"/>
+                        <h:outputText value="#{bundle.ViewDvdLabel_marca}"/>
+                        <h:outputText value="#{dvdController.selected.marca}" title="#{bundle.ViewDvdTitle_marca}"/>
+                        <h:outputText value="#{bundle.ViewDvdLabel_noSerie}"/>
+                        <h:outputText value="#{dvdController.selected.noSerie}" title="#{bundle.ViewDvdTitle_noSerie}"/>
+                        <h:outputText value="#{bundle.ViewDvdLabel_computadoraid}"/>
+                        <h:outputText value="#{dvdController.selected.computadoraid.nombrePc}" title="#{bundle.ViewDvdTitle_computadoraid}"/>
+                    </h:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="DvdViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

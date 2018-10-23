@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MouseCreateDlg" widgetVar="MouseCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateMouseTitle}">
+            <h:form id="MouseCreateForm">
+                <h:panelGroup id="display">
+                    <h:panelGrid columns="2" rendered="#{mouseController.selected != null}">
+                         <p:outputLabel value="#{bundle.CreateMouseLabel_marca}" for="marca" />
+                        <p:inputText id="marca" value="#{mouseController.selected.marca}" title="#{bundle.CreateMouseTitle_marca}" />
+                        <p:outputLabel value="#{bundle.CreateMouseLabel_modelo}" for="modelo" />
+                        <p:inputText id="modelo" value="#{mouseController.selected.modelo}" title="#{bundle.CreateMouseTitle_modelo}" />
+                        <p:outputLabel value="#{bundle.CreateMouseLabel_noInventario}" for="noInventario" />
+                        <p:inputText id="noInventario" value="#{mouseController.selected.noInventario}" title="#{bundle.CreateMouseTitle_noInventario}" />
+                        
+                    </h:panelGrid>
+                    <p:commandButton actionListener="#{mouseController.createCid(computadoraController.computadora)}" value="#{bundle.Save}" update="display,:MouseListForm:datalist,:growl" oncomplete="handleSubmit(args,'MouseCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="MouseCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

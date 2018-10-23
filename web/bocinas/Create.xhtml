@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="BocinasCreateDlg" widgetVar="BocinasCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateBocinasTitle}">
+            <h:form id="BocinasCreateForm">
+                <h:panelGroup id="display">
+                    <h:panelGrid columns="2" rendered="#{bocinasController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateBocinasLabel_marca}" for="marca" />
+                        <p:inputText id="marca" value="#{bocinasController.selected.marca}" title="#{bundle.CreateBocinasTitle_marca}" />
+                        <p:outputLabel value="#{bundle.CreateBocinasLabel_modelo}" for="modelo" />
+                        <p:inputText id="modelo" value="#{bocinasController.selected.modelo}" title="#{bundle.CreateBocinasTitle_modelo}" />
+                        <p:outputLabel value="#{bundle.CreateBocinasLabel_noInventario}" for="noInventario" />
+                        <p:inputText  id="noInventario" value="#{bocinasController.selected.noInventario}" title="#{bundle.CreateBocinasTitle_noInventario}" required="true" requiredMessage="#{bundle.CreateBocinasRequiredMessage_noInventario}"/>
+                        
+                       
+                    </h:panelGrid>
+                    <p:commandButton actionListener="#{bocinasController.createComputerId(computadoraController.computadora)}" value="#{bundle.Save}" update="display,:BocinasListForm:datalist,:growl" oncomplete="handleSubmit(args,'BocinasCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="BocinasCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="BocinasViewDlg" widgetVar="BocinasViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewBocinasTitle}">
+            <h:form id="BocinasViewForm">
+                <h:panelGroup id="display">
+                    <h:panelGrid columns="2" rendered="#{bocinasController.selected != null}">
+                        <h:outputText value="#{bundle.ViewBocinasLabel_marca}"/>
+                        <h:outputText value="#{bocinasController.selected.marca}" title="#{bundle.ViewBocinasTitle_marca}"/>
+                        <h:outputText value="#{bundle.ViewBocinasLabel_modelo}"/>
+                        <h:outputText value="#{bocinasController.selected.modelo}" title="#{bundle.ViewBocinasTitle_modelo}"/>
+                        <h:outputText value="#{bundle.ViewBocinasLabel_noInventario}"/>
+                        <h:outputText value="#{bocinasController.selected.noInventario}" title="#{bundle.ViewBocinasTitle_noInventario}"/>
+                        <h:outputText value="#{bundle.ViewBocinasLabel_computadoraid}"/>
+                        <h:outputText value="#{bocinasController.selected.computadoraid.nombrePc}" title="#{bundle.ViewBocinasTitle_computadoraid}"/>
+                    </h:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="BocinasViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

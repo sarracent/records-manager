@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MonitorViewDlg" widgetVar="MonitorViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewMonitorTitle}">
+            <h:form id="MonitorViewForm">
+                <h:panelGroup id="display">
+                    <h:panelGrid columns="2" rendered="#{monitorController.selected != null}">
+                       <h:outputText value="#{bundle.ViewMonitorLabel_marca}"/>
+                        <h:outputText value="#{monitorController.selected.marca}" title="#{bundle.ViewMonitorTitle_marca}"/>
+                        <h:outputText value="#{bundle.ViewMonitorLabel_modelo}"/>
+                        <h:outputText value="#{monitorController.selected.modelo}" title="#{bundle.ViewMonitorTitle_modelo}"/>
+                        <h:outputText value="#{bundle.ViewMonitorLabel_noSerie}"/>
+                        <h:outputText value="#{monitorController.selected.noSerie}" title="#{bundle.ViewMonitorTitle_noSerie}"/>
+                        <h:outputText value="#{bundle.ViewMonitorLabel_noInventario}"/>
+                        <h:outputText value="#{monitorController.selected.noInventario}" title="#{bundle.ViewMonitorTitle_noInventario}"/>
+                        <h:outputText value="#{bundle.ViewMonitorLabel_computadoraid}"/>
+                        <h:outputText value="#{monitorController.selected.computadoraid.nombrePc}" title="#{bundle.ViewMonitorTitle_computadoraid}"/>
+                    </h:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="MonitorViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

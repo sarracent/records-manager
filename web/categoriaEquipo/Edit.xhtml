@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CategoriaEquipoEditDlg" widgetVar="CategoriaEquipoEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditCategoriaEquipoTitle}">
+            <h:form id="CategoriaEquipoEditForm">
+                <h:panelGroup id="display">
+                    <h:panelGrid columns="2" rendered="#{categoriaEquipoController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditCategoriaEquipoLabel_categoria}" for="categoria" />
+                        <p:inputText id="categoria" value="#{categoriaEquipoController.selected.categoria}" title="#{bundle.EditCategoriaEquipoTitle_categoria}" required="true" requiredMessage="#{bundle.EditCategoriaEquipoRequiredMessage_categoria}"/>
+                         </h:panelGrid>
+                    <p:commandButton actionListener="#{categoriaEquipoController.update}" value="#{bundle.Save}" update="display,:CategoriaEquipoListForm:datalist,:growl" oncomplete="handleSubmit(args, 'CategoriaEquipoEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CategoriaEquipoEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

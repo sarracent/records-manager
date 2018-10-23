@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AntivirusCreateDlg" widgetVar="AntivirusCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateAntivirusTitle}">
+            <h:form id="AntivirusCreateForm">
+                <h:panelGroup id="display">
+                    <h:panelGrid columns="2" rendered="#{antivirusController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateAntivirusLabel_antivirus}" for="antivirus" />
+                        <p:inputText id="antivirus" value="#{antivirusController.selected.antivirus}" title="#{bundle.CreateAntivirusTitle_antivirus}" required="true" requiredMessage="#{bundle.CreateAntivirusRequiredMessage_antivirus}"/>
+                       </h:panelGrid>
+                    <p:commandButton actionListener="#{antivirusController.create}" value="#{bundle.Save}" update="display,:AntivirusListForm:datalist,:growl" oncomplete="handleSubmit(args,'AntivirusCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="AntivirusCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

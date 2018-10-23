@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="FotocopiadoraCreateDlg" widgetVar="FotocopiadoraCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateFotocopiadoraTitle}">
+            <h:form id="FotocopiadoraCreateForm">
+                <h:panelGroup id="display">
+                    <h:panelGrid columns="2" rendered="#{fotocopiadoraController.selected != null}">
+                          <p:outputLabel value="#{bundle.CreateFotocopiadoraLabel_marca}" for="marca" />
+                        <p:inputText id="marca" value="#{fotocopiadoraController.selected.marca}" title="#{bundle.CreateFotocopiadoraTitle_marca}" />
+                        <p:outputLabel value="#{bundle.CreateFotocopiadoraLabel_modelo}" for="modelo" />
+                        <p:inputText id="modelo" value="#{fotocopiadoraController.selected.modelo}" title="#{bundle.CreateFotocopiadoraTitle_modelo}" />
+                        <p:outputLabel value="#{bundle.CreateFotocopiadoraLabel_noSerie}" for="noSerie" />
+                        <p:inputText id="noSerie" value="#{fotocopiadoraController.selected.noSerie}" title="#{bundle.CreateFotocopiadoraTitle_noSerie}" />
+                        <p:outputLabel value="#{bundle.CreateFotocopiadoraLabel_noInventario}" for="noInventario" />
+                        <p:inputText id="noInventario" value="#{fotocopiadoraController.selected.noInventario}" title="#{bundle.CreateFotocopiadoraTitle_noInventario}" />
+                        
+                    </h:panelGrid>
+                    <p:commandButton actionListener="#{fotocopiadoraController.createCid(computadoraController.computadora)}" value="#{bundle.Save}" update="display,:FotocopiadoraListForm:datalist,:growl" oncomplete="handleSubmit(args,'FotocopiadoraCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="FotocopiadoraCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

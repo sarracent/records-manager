@@ -1,0 +1,421 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+
+    <ui:composition  template="/template_operario.xhtml">
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListAntivirusTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+
+            <f:facet name="header">#{computadoraController.proPc.nombrePc}</f:facet> 
+            <h:panelGrid columns="5"  >
+                <h:panelGrid columns="2" >
+                    <p:outputLabel value=" Nombre PC:" style="font-size: 18px;font-weight: bold; margin-left: 20px" ></p:outputLabel> 
+                    <p:outputLabel  value="#{computadoraController.proPc.nombrePc}" style="font-size: 18px; margin-left: 5px;font-weight:inherit  " ></p:outputLabel>
+                </h:panelGrid>
+                <h:panelGrid columns="2"   >
+                    <p:outputLabel value=" Dirección:" style="font-size: 18px;font-weight: bold; margin-left: 30px"></p:outputLabel>
+                    <p:outputLabel value="#{computadoraController.proPc.nombreDireccion}" style="font-size: 18px; margin-left: 5px;font-weight:inherit  " ></p:outputLabel>
+                </h:panelGrid>
+                <h:panelGrid columns="2"   >
+                    <p:outputLabel value=" Sistema Operativo:" style="font-size: 18px;font-weight: bold; margin-left: 30px"></p:outputLabel>
+                    <p:outputLabel value="#{computadoraController.proPc.sistemaOperativo}" style="font-size: 18px; margin-left: 5px;font-weight:inherit  " ></p:outputLabel>
+                </h:panelGrid>
+                <h:panelGrid columns="2"   >
+                    <p:outputLabel value=" Categoria:" style="font-size: 18px;font-weight: bold; margin-left: 30px"></p:outputLabel>
+                    <p:outputLabel value="#{computadoraController.proPc.categoriaEquipo}" style="font-size: 18px; margin-left: 5px;font-weight:inherit  " ></p:outputLabel>
+                </h:panelGrid>
+
+
+                <h:panelGrid columns="2"   >
+                    <p:outputLabel value="Antivirus:" style="font-size: 18px;font-weight: bold; margin-left: 20px"></p:outputLabel>
+                    <p:outputLabel value="#{computadoraController.proPc.antivirus.antivirus}" style="font-size: 18px; margin-left: 5px;font-weight:inherit  " ></p:outputLabel>
+                </h:panelGrid>
+
+                <h:panelGrid columns="2"   >
+                    <p:outputLabel value=" Número IP:" style="font-size: 18px;font-weight: bold; margin-left: 20px"></p:outputLabel>
+                    <p:outputLabel value="#{computadoraController.proPc.noIp}" style="font-size: 18px; margin-left: 5px;font-weight:inherit  " ></p:outputLabel>
+                </h:panelGrid>
+                <h:panelGrid columns="2" >
+                    <p:outputLabel value=" Número MAC:" style="font-size: 18px;font-weight: bold; margin-left: 30px" ></p:outputLabel>
+                    <p:outputLabel value="#{computadoraController.proPc.noMac}" style="font-size: 18px; margin-left: 5px;font-weight:inherit  " ></p:outputLabel>
+                </h:panelGrid>
+
+                <h:panelGrid columns="2"   >
+                    <p:outputLabel value=" Número sello:" style="font-size: 18px;font-weight: bold; margin-left: 30px"></p:outputLabel>
+                    <p:outputLabel value="#{computadoraController.proPc.noSello}" style="font-size: 18px; margin-left: 5px;font-weight:inherit  " ></p:outputLabel>
+                </h:panelGrid>
+                
+                
+
+            </h:panelGrid>
+            <br/>
+            <h:panelGrid columns="9">
+                <c:forEach items="#{motherboardController.items}" var="board">
+                    <c:if test="#{computadoraController.proPc.id==board.computadoraid.id}" >
+
+                        <div  class="ui-grid-col-2">
+                            <h:panelGrid columns="2" style="display: inline" rendered="true">
+
+                                <h:panelGrid columns="2" style=""  >
+
+                                    <h:panelGrid columns="1" style=""  >
+                                        <p:graphicImage value="/img/motherboard.png" height="90"  />
+                                    </h:panelGrid>
+
+                                    <h:panelGrid columns="2">
+                                        <p:outputLabel value="Marca:" style="font-size: 18px;font-weight: bold;"></p:outputLabel>
+                                        <p:outputLabel value="#{board.marca}" style="font-size: 18px; margin-left: 5px;font-weight:inherit  " ></p:outputLabel>
+                                        <p:outputLabel value="Modelo:" style="font-size: 18px;font-weight: bold; "></p:outputLabel>
+                                        <p:outputLabel value="#{board.modelo}" style="font-size: 18px; margin-left: 5px;font-weight:inherit  " ></p:outputLabel>
+                                        <p:outputLabel value="Número Serie:" style="font-size: 18px;font-weight: bold;"></p:outputLabel>
+                                        <p:outputLabel value="#{board.noSerie}" style="font-size: 18px; margin-left: 5px;font-weight:inherit  " ></p:outputLabel>
+                                    </h:panelGrid>
+
+                                </h:panelGrid>
+
+                            </h:panelGrid >
+                        </div>
+                    </c:if>
+
+                </c:forEach>
+
+                <c:forEach items="#{cpuController.items}" var="cpu">
+                    <c:if test="#{computadoraController.proPc.id==cpu.computadoraid.id}" >                            
+                        <div  class="ui-grid-col-2">
+                            <h:panelGrid columns="2" style="display: inline" rendered="true">
+                                <h:panelGrid columns="2" style=""  >
+                                    <h:panelGrid columns="1" style=""  >
+                                        <p:graphicImage value="/img/cpu.png" height="90" style=""/>
+                                    </h:panelGrid>
+
+                                    <h:panelGrid columns="2"  >
+                                        <p:outputLabel value="Marca:" style="font-size: 18px;font-weight: bold; "></p:outputLabel>
+                                        <p:outputLabel value="#{cpu.modelo}" style="font-size: 18px; margin-left: 5px;font-weight:inherit  " ></p:outputLabel>
+                                        <p:outputLabel value="Fabricante:" style="font-size: 18px;font-weight: bold; "></p:outputLabel>
+                                        <p:outputLabel value="#{cpu.fabricante}" style="font-size: 18px; margin-left: 5px;font-weight:inherit  " ></p:outputLabel>
+                                        <p:outputLabel value="Velocidad:" style="font-size: 18px;font-weight: bold;"></p:outputLabel>
+                                        <p:outputLabel value="#{cpu.velocidad} MHz" style="font-size: 18px; margin-left: 5px;font-weight:inherit  " ></p:outputLabel>
+                                    </h:panelGrid>
+                                </h:panelGrid>  
+                            </h:panelGrid >
+                        </div>
+                    </c:if>
+                </c:forEach>
+
+                <c:forEach items="#{ramController.items}" var="ram">
+                    <c:if test="#{computadoraController.proPc.id==ram.computadoraid.id}" >       
+                        <div  class="ui-grid-col-2">
+                            <h:panelGrid columns="2" style="" rendered="true">
+                                <h:panelGrid columns="2" style=""  >
+                                    <h:panelGrid columns="1" >
+                                        <p:graphicImage value="/img/ram.png" height="50" style=""/>
+                                    </h:panelGrid>
+                                    <h:panelGrid columns="2"  >
+                                        <p:outputLabel value="Marca:" style="font-size: 18px;font-weight: bold;"></p:outputLabel>
+                                        <p:outputLabel value="#{ram.marca}" style="font-size: 18px; margin-left: 5px;font-weight:inherit  " ></p:outputLabel>
+                                        <p:outputLabel value="Modelo:" style="font-size: 18px;font-weight: bold;"></p:outputLabel>
+                                        <p:outputLabel value="#{ram.modelo}" style="font-size: 18px; margin-left: 5px;font-weight:inherit  " ></p:outputLabel>
+                                        <p:outputLabel value="No Serie" style="font-size: 18px;font-weight: bold; "></p:outputLabel>
+                                        <p:outputLabel value="#{ram.noSerie}" style="font-size: 18px; margin-left: 5px;font-weight:inherit  " ></p:outputLabel>
+                                        <p:outputLabel value="Capacidad" style="font-size: 18px;font-weight: bold;"></p:outputLabel>
+                                        <p:outputLabel value="#{ram.capacidad} MByte" style="font-size: 18px; margin-left: 5px;font-weight:inherit " ></p:outputLabel>
+                                    </h:panelGrid>
+                                </h:panelGrid>
+
+                            </h:panelGrid >
+                        </div>
+                    </c:if>
+
+                </c:forEach>
+
+
+
+                <c:forEach items="#{hddController.items}" var="hdd">
+                    <c:if test="#{computadoraController.proPc.id==hdd.computadoraid.id}" >                              
+                        <div  class="ui-grid-col-2">
+                            <h:panelGrid columns="2" style="" rendered="true">
+                                <h:panelGrid columns="2" style=""  >
+                                    <h:panelGrid columns="1" >
+                                        <p:graphicImage value="/img/hdd.png" height="80" style=""/>
+                                    </h:panelGrid>
+                                    <h:panelGrid columns="2"  >
+                                        <p:outputLabel value="Marca:" style="font-size: 18px;font-weight: bold;"></p:outputLabel>
+                                        <p:outputLabel value="#{hdd.marca}" style="font-size: 18px; margin-left: 5px;font-weight:inherit  " ></p:outputLabel>
+                                        <p:outputLabel value="Modelo:" style="font-size: 18px;font-weight: bold;"></p:outputLabel>
+                                        <p:outputLabel value="#{hdd.modelo}" style="font-size: 18px; margin-left: 5px;font-weight:inherit  " ></p:outputLabel>
+                                        <p:outputLabel value="No Serie" style="font-size: 18px;font-weight: bold; "></p:outputLabel>
+                                        <p:outputLabel value="#{hdd.noSerie}" style="font-size: 18px; margin-left: 5px;font-weight:inherit  " ></p:outputLabel>
+                                        <p:outputLabel value="Capacidad" style="font-size: 18px;font-weight: bold;"></p:outputLabel>
+                                        <p:outputLabel value="#{hdd.capacidad} GByte" style="font-size: 18px; margin-left: 5px;font-weight:inherit " ></p:outputLabel>
+                                    </h:panelGrid>
+                                </h:panelGrid>
+                            </h:panelGrid >
+                        </div>
+                    </c:if>
+                </c:forEach>
+
+                <c:forEach items="#{dvdController.items}" var="dvd">
+                    <c:if test="#{computadoraController.proPc.id==dvd.computadoraid.id}" >    
+                        <div  class="ui-grid-col-2">
+                            <h:panelGrid columns="2" style="" rendered="true">
+
+                                <h:panelGrid columns="2"  >
+                                    <h:panelGrid columns="1" >
+                                        <p:graphicImage value="/img/dvd.png" height="100" style=""/>
+                                    </h:panelGrid>
+                                    <h:panelGrid columns="2"  >
+                                        <p:outputLabel value="Marca:" style="font-size: 18px;font-weight: bold;"></p:outputLabel>
+                                        <p:outputLabel value="#{dvd.marca}" style="font-size: 18px; margin-left: 5px;font-weight:inherit  " ></p:outputLabel>
+                                        <p:outputLabel value="Modelo:" style="font-size: 18px;font-weight: bold;"></p:outputLabel>
+                                        <p:outputLabel value="#{dvd.modelo}" style="font-size: 18px; margin-left: 5px;font-weight:inherit  " ></p:outputLabel>
+                                        <p:outputLabel value="No Serie" style="font-size: 18px;font-weight: bold; "></p:outputLabel>
+                                        <p:outputLabel value="#{dvd.noSerie}" style="font-size: 18px; margin-left: 5px;font-weight:inherit  " ></p:outputLabel>
+                                    </h:panelGrid>
+                                </h:panelGrid>
+
+
+                            </h:panelGrid >
+                        </div>
+                    </c:if>
+                </c:forEach>
+
+                <c:forEach items="#{torreController.items}" var="torre">
+                    <c:if test="#{computadoraController.proPc.id==torre.computadoraid.id}" >
+
+                        <div  class="ui-grid-col-2">
+                            <h:panelGrid columns="2" style="" rendered="true">
+
+                                <h:panelGrid columns="2"  >
+                                    <h:panelGrid columns="1" >
+                                        <p:graphicImage value="/img/torre.png" height="100" style=""/>
+                                    </h:panelGrid>
+                                    <h:panelGrid columns="2"  >
+                                        <p:outputLabel value="Marca:" style="font-size: 18px;font-weight: bold;"></p:outputLabel>
+                                        <p:outputLabel value="#{torre.marca}" style="font-size: 18px; margin-left: 5px;font-weight:inherit  " ></p:outputLabel>
+                                        <p:outputLabel value="Modelo:" style="font-size: 18px;font-weight: bold;"></p:outputLabel>
+                                        <p:outputLabel value="#{torre.modelo}" style="font-size: 18px; margin-left: 5px;font-weight:inherit  " ></p:outputLabel>
+                                        <p:outputLabel value="No Serie" style="font-size: 18px;font-weight: bold; "></p:outputLabel>
+                                        <p:outputLabel value="#{torre.noSerie}" style="font-size: 18px; margin-left: 5px;font-weight:inherit  " ></p:outputLabel>
+                                        <p:outputLabel value="No Inv" style="font-size: 18px;font-weight: bold; "></p:outputLabel>
+                                        <p:outputLabel value="#{torre.noInventario}" style="font-size: 18px; margin-left: 5px;font-weight:inherit  " ></p:outputLabel>
+                                    </h:panelGrid>
+                                </h:panelGrid>
+
+                            </h:panelGrid >
+                        </div>
+                    </c:if>
+
+                </c:forEach>
+
+
+                <c:forEach items="#{monitorController.items}" var="monitor">
+
+                    <c:if test="#{computadoraController.proPc.id==monitor.computadoraid.id}" >
+
+                        <div  class="ui-grid-col-2">
+                            <h:panelGrid columns="2" style=""  >
+                                <h:panelGrid columns="1" >
+                                    <p:graphicImage value="/img/monitor_1.png" height="80" style=""/>
+                                </h:panelGrid>
+                                <h:panelGrid columns="2"  >
+                                    <p:outputLabel value="Marca:" style="font-size: 18px;font-weight: bold;"></p:outputLabel>
+                                    <p:outputLabel value="#{monitor.marca}" style="font-size: 18px; margin-left: 5px;font-weight:inherit  " ></p:outputLabel>
+                                    <p:outputLabel value="Modelo:" style="font-size: 18px;font-weight: bold;"></p:outputLabel>
+                                    <p:outputLabel value="#{monitor.modelo}" style="font-size: 18px; margin-left: 5px;font-weight:inherit  " ></p:outputLabel>
+                                    <p:outputLabel value="No Serie:" style="font-size: 18px;font-weight: bold; "></p:outputLabel>
+                                    <p:outputLabel value="#{monitor.noSerie}" style="font-size: 18px; margin-left: 5px;font-weight:inherit  " ></p:outputLabel>
+                                    <p:outputLabel value="No Inv:" style="font-size: 18px;font-weight: bold;"></p:outputLabel>
+                                    <p:outputLabel value="#{monitor.noInventario}" style="font-size: 18px; margin-left: 5px;font-weight:inherit " ></p:outputLabel>
+                                </h:panelGrid>
+                            </h:panelGrid>
+                        </div>
+                    </c:if>
+                </c:forEach>
+                <c:forEach items="#{upsController.items}" var="ups">
+                    <c:if test="#{computadoraController.proPc.id==ups.computadoraid.id}" >
+
+                        <div  class="ui-grid-col-2">
+                            <h:panelGrid columns="2"  >
+                                <h:panelGrid columns="1" >
+                                    <p:graphicImage value="/img/ups.png" height="100" style=""/>
+                                </h:panelGrid>
+                                <h:panelGrid columns="2"  >
+                                    <p:outputLabel value="Marca:" style="font-size: 18px;font-weight: bold;"></p:outputLabel>
+                                    <p:outputLabel value="#{ups.marca}" style="font-size: 18px; margin-left: 5px;font-weight:inherit  " ></p:outputLabel>
+                                    <p:outputLabel value="Modelo:" style="font-size: 18px;font-weight: bold;"></p:outputLabel>
+                                    <p:outputLabel value="#{ups.modelo}" style="font-size: 18px; margin-left: 5px;font-weight:inherit  " ></p:outputLabel>
+                                    <p:outputLabel value="No Serie:" style="font-size: 18px;font-weight: bold; "></p:outputLabel>
+                                    <p:outputLabel value="#{ups.noSerie}" style="font-size: 18px; margin-left: 5px;font-weight:inherit  " ></p:outputLabel>
+                                    <p:outputLabel value="No Inv:" style="font-size: 18px;font-weight: bold; "></p:outputLabel>
+                                    <p:outputLabel value="#{ups.noInventario}" style="font-size: 18px; margin-left: 5px;font-weight:inherit  " ></p:outputLabel>
+                                </h:panelGrid>
+                            </h:panelGrid>
+
+                        </div>
+                    </c:if>
+                </c:forEach>
+
+                <c:forEach items="#{impresoraController.items}" var="impresora">
+                    <c:if test="#{computadoraController.proPc.id==impresora.computadoraid.id}" >
+
+                        <div  class="ui-grid-col-2">
+                            <h:panelGrid columns="2"  >
+                                <h:panelGrid columns="1" >
+                                    <p:graphicImage value="/img/impresora.png" height="100" style=""/>
+                                </h:panelGrid>
+                                <h:panelGrid columns="2"  >
+                                    <p:outputLabel value="Marca:" style="font-size: 18px;font-weight: bold;"></p:outputLabel>
+                                    <p:outputLabel value="#{impresora.marca}" style="font-size: 18px; margin-left: 5px;font-weight:inherit  " ></p:outputLabel>
+                                    <p:outputLabel value="Modelo:" style="font-size: 18px;font-weight: bold;"></p:outputLabel>
+                                    <p:outputLabel value="#{impresora.modelo}" style="font-size: 18px; margin-left: 5px;font-weight:inherit  " ></p:outputLabel>
+                                    <p:outputLabel value="No Serie:" style="font-size: 18px;font-weight: bold; "></p:outputLabel>
+                                    <p:outputLabel value="#{impresora.noSerie}" style="font-size: 18px; margin-left: 5px;font-weight:inherit  " ></p:outputLabel>
+                                    <p:outputLabel value="No Inv:" style="font-size: 18px;font-weight: bold; "></p:outputLabel>
+                                    <p:outputLabel value="#{impresora.noInventario}" style="font-size: 18px; margin-left: 5px;font-weight:inherit  " ></p:outputLabel>
+                                </h:panelGrid>
+                            </h:panelGrid>
+
+                        </div>
+                    </c:if>
+                </c:forEach>
+
+
+                <c:forEach items="#{fotocopiadoraController.items}" var="fotoc">
+                    <c:if test="#{computadoraController.proPc.id==fotoc.computadoraid.id}" >
+                        <div  class="ui-grid-col-2">
+                            <h:panelGrid columns="2" style="" rendered="true">
+                                <h:panelGrid columns="2" style=""  >
+                                    <h:panelGrid columns="1" >
+                                        <p:graphicImage value="/img/fotocopiadora.png" height="110" style=""/>
+                                    </h:panelGrid>
+                                    <h:panelGrid columns="2"  >
+                                        <p:outputLabel value="Marca:" style="font-size: 18px;font-weight: bold;"></p:outputLabel>
+                                        <p:outputLabel value="#{fotoc.marca}" style="font-size: 18px; margin-left: 5px;font-weight:inherit  " ></p:outputLabel>
+                                        <p:outputLabel value="Modelo:" style="font-size: 18px;font-weight: bold;"></p:outputLabel>
+                                        <p:outputLabel value="#{fotoc.modelo}" style="font-size: 18px; margin-left: 5px;font-weight:inherit  " ></p:outputLabel>
+                                        <p:outputLabel value="No Serie:" style="font-size: 18px;font-weight: bold; "></p:outputLabel>
+                                        <p:outputLabel value="#{fotoc.noSerie}" style="font-size: 18px; margin-left: 5px;font-weight:inherit  " ></p:outputLabel>
+                                        <p:outputLabel value="No Inv:" style="font-size: 18px;font-weight: bold;"></p:outputLabel>
+                                        <p:outputLabel value="#{fotoc.noInventario}" style="font-size: 18px; margin-left: 5px;font-weight:inherit " ></p:outputLabel>
+                                    </h:panelGrid>
+                                </h:panelGrid> 
+                            </h:panelGrid >
+                        </div>
+                    </c:if>
+                </c:forEach>
+
+                <c:forEach items="#{scannerController.items}" var="scanner">
+                    <c:if test="#{computadoraController.proPc.id==scanner.computadoraid.id}" >                          
+                        <div  class="ui-grid-col-2">
+                            <h:panelGrid columns="2" style="" rendered="true">
+                                <h:panelGrid columns="2"  >
+                                    <h:panelGrid columns="1" >
+                                        <p:graphicImage value="/img/scanner.png" height="100" style=""/>
+                                    </h:panelGrid>
+                                    <h:panelGrid columns="2"  >
+                                        <p:outputLabel value="Marca:" style="font-size: 18px;font-weight: bold;"></p:outputLabel>
+                                        <p:outputLabel value="#{scanner.marca}" style="font-size: 18px; margin-left: 5px;font-weight:inherit  " ></p:outputLabel>
+                                        <p:outputLabel value="Modelo:" style="font-size: 18px;font-weight: bold;"></p:outputLabel>
+                                        <p:outputLabel value="#{scanner.modelo}" style="font-size: 18px; margin-left: 5px;font-weight:inherit  " ></p:outputLabel>
+                                        <p:outputLabel value="No Serie:" style="font-size: 18px;font-weight: bold; "></p:outputLabel>
+                                        <p:outputLabel value="#{scanner.noSerie}" style="font-size: 18px; margin-left: 5px;font-weight:inherit  " ></p:outputLabel>
+                                        <p:outputLabel value="No Inv:" style="font-size: 18px;font-weight: bold; "></p:outputLabel>
+                                        <p:outputLabel value="#{scanner.noInventario}" style="font-size: 18px; margin-left: 5px;font-weight:inherit  " ></p:outputLabel>
+                                    </h:panelGrid>
+                                </h:panelGrid>
+                            </h:panelGrid >
+                        </div>
+                    </c:if>
+                </c:forEach>
+
+                <c:forEach items="#{tecladoController.items}" var="teclado">
+                    <c:if test="#{computadoraController.proPc.id==teclado.computadoraid.id}" >
+                        <div  class="ui-grid-col-2">
+                            <h:panelGrid columns="2" style="" rendered="true">
+                                <h:panelGrid columns="2"  >
+                                    <h:panelGrid columns="1" >
+                                        <p:graphicImage value="/img/teclado.png" height="100" style=""/>
+                                    </h:panelGrid>
+                                    <h:panelGrid columns="2"  >
+                                        <p:outputLabel value="Marca:" style="font-size: 18px;font-weight: bold;"></p:outputLabel>
+                                        <p:outputLabel value="#{teclado.marca}" style="font-size: 18px; margin-left: 5px;font-weight:inherit  " ></p:outputLabel>
+                                        <p:outputLabel value="Modelo:" style="font-size: 18px;font-weight: bold;"></p:outputLabel>
+                                        <p:outputLabel value="#{teclado.modelo}" style="font-size: 18px; margin-left: 5px;font-weight:inherit  " ></p:outputLabel>
+                                        <p:outputLabel value="No Inv:" style="font-size: 18px;font-weight: bold; "></p:outputLabel>
+                                        <p:outputLabel value="#{teclado.noInventario}" style="font-size: 18px; margin-left: 5px;font-weight:inherit  " ></p:outputLabel>
+                                    </h:panelGrid>
+                                </h:panelGrid>
+                            </h:panelGrid >
+                        </div>
+                    </c:if>
+                </c:forEach>
+
+                <c:forEach items="#{mouseController.items}" var="mouse">
+                    <c:if test="#{computadoraController.proPc.id==mouse.computadoraid.id}" >
+                        <div  class="ui-grid-col-2">
+                            <h:panelGrid columns="2" style="" rendered="true">
+                                <h:panelGrid columns="2" style=""  >
+                                    <h:panelGrid columns="1" >
+                                        <p:graphicImage value="/img/mouse.png" height="110" style=""/>
+                                    </h:panelGrid>
+                                    <h:panelGrid columns="2"  >
+                                        <p:outputLabel value="Marca:" style="font-size: 18px;font-weight: bold;"></p:outputLabel>
+                                        <p:outputLabel value="#{mouse.marca}" style="font-size: 18px; margin-left: 5px;font-weight:inherit  " ></p:outputLabel>
+                                        <p:outputLabel value="Modelo:" style="font-size: 18px;font-weight: bold;"></p:outputLabel>
+                                        <p:outputLabel value="#{mouse.modelo}" style="font-size: 18px; margin-left: 5px;font-weight:inherit  " ></p:outputLabel>
+                                        <p:outputLabel value="No Inv:" style="font-size: 18px;font-weight: bold;"></p:outputLabel>
+                                        <p:outputLabel value="#{mouse.noInventario}" style="font-size: 18px; margin-left: 5px;font-weight:inherit " ></p:outputLabel>
+                                    </h:panelGrid>
+                                </h:panelGrid> 
+                            </h:panelGrid >
+                        </div>
+                    </c:if>
+                </c:forEach>
+
+                <c:forEach items="#{bocinasController.items}" var="bocinas">
+                    <c:if test="#{computadoraController.proPc.id==bocinas.computadoraid.id}" >                          
+                        <div  class="ui-grid-col-2">
+                            <h:panelGrid columns="2" style="" rendered="true">
+                                <h:panelGrid columns="2"  >
+                                    <h:panelGrid columns="1" >
+                                        <p:graphicImage value="/img/bocinas.png" height="100" style=""/>
+                                    </h:panelGrid>
+                                    <h:panelGrid columns="2"  >
+                                        <p:outputLabel value="Marca:" style="font-size: 18px;font-weight: bold;"></p:outputLabel>
+                                        <p:outputLabel value="#{bocinas.marca}" style="font-size: 18px; margin-left: 5px;font-weight:inherit  " ></p:outputLabel>
+                                        <p:outputLabel value="Modelo:" style="font-size: 18px;font-weight: bold;"></p:outputLabel>
+                                        <p:outputLabel value="#{bocinas.modelo}" style="font-size: 18px; margin-left: 5px;font-weight:inherit  " ></p:outputLabel>
+                                        <p:outputLabel value="No Inv:" style="font-size: 18px;font-weight: bold; "></p:outputLabel>
+                                        <p:outputLabel value="#{bocinas.noInventario}" style="font-size: 18px; margin-left: 5px;font-weight:inherit  " ></p:outputLabel>
+                                    </h:panelGrid>
+                                </h:panelGrid>
+                            </h:panelGrid >
+                        </div>
+                    </c:if>
+                </c:forEach>
+
+            </h:panelGrid>
+
+            <h:panelGrid>
+                <h:form id="firm">
+                    <p:commandButton id="createButton" actionListener="#{computadoraController.mensaje()}" icon="ui-icon-pencil"   value="Firmar" update="IncidenciasCreateForm"  oncomplete="PF('dlgDialogo').show()" />     
+                </h:form>
+                
+                
+            </h:panelGrid>
+            <ui:include src="pass_firma_operario.xhtml"/>
+            
+        </ui:define>
+    </ui:composition>
+.
+</html>

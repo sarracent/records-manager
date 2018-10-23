@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="UsuariosViewDlg" widgetVar="UsuariosViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewUsuariosTitle}">
+            <h:form id="UsuariosViewForm">
+                <h:panelGroup id="display">
+                    <h:panelGrid columns="2" rendered="#{usuariosController.selected != null}">
+                        <h:outputText value="#{bundle.ViewUsuariosLabel_usuario}"/>
+                        <h:outputText value="#{usuariosController.selected.usuario}" title="#{bundle.ViewUsuariosTitle_usuario}"/>
+                        <h:outputText value="#{bundle.ViewUsuariosLabel_nombre}"/>
+                        <h:outputText value="#{usuariosController.selected.nombre}" title="#{bundle.ViewUsuariosTitle_nombre}"/>
+                        <h:outputText value="#{bundle.ViewUsuariosLabel_apellidos}"/>
+                        <h:outputText value="#{usuariosController.selected.apellidos}" title="#{bundle.ViewUsuariosTitle_apellidos}"/>
+                        <h:outputText value="#{bundle.ViewUsuariosLabel_correo}"/>
+                        <h:outputText value="#{usuariosController.selected.correo}" title="#{bundle.ViewUsuariosTitle_correo}"/>
+                        <h:outputText value="#{bundle.ViewUsuariosLabel_id}"/>
+                        <h:outputText value="#{usuariosController.selected.id}" title="#{bundle.ViewUsuariosTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewUsuariosLabel_rol}"/>
+                        <h:outputText value="#{usuariosController.selected.rol}" title="#{bundle.ViewUsuariosTitle_rol}"/>
+                    </h:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="UsuariosViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ComputadoraCreateDlg" widgetVar="ComputadoraCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateComputadoraTitle}">
+            <h:form id="ComputadoraCreateForm">
+                 <p:ajaxStatus >
+                    <f:facet name="start">
+                        <img src="../resources/loading.gif" alt="" style="margin-left: 20%"/> 
+                    </f:facet>
+                </p:ajaxStatus>
+                <h:panelGroup id="display">
+                    <h:panelGrid columns="2" rendered="#{computadoraController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateComputadoraLabel_nombrePc}" for="nombrePc" />
+                        <p:inputText id="nombrePc" value="#{computadoraController.selected.nombrePc}" title="#{bundle.CreateComputadoraTitle_computadoraid}" required="true" requiredMessage="#{bundle.CreateComputadoraRequiredMessage_nombrePc}" converterMessage="El campo Nombre de equipo se encuentra duplicado"/>
+                        <p:outputLabel value="#{bundle.CreateComputadoraLabel_noIp}" for="noIp" />
+                        <p:inputText id="noIp" value="#{computadoraController.selected.noIp}" title="#{bundle.CreateComputadoraTitle_noIp}" required="true"  requiredMessage="El campo Dirección IP está vacío " validatorMessage="Por favor introduzca correctamente la dirección IP">
+                            <f:validateRegex
+                                pattern="^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$|-"/>
+                        </p:inputText>
+                        <p:outputLabel value="#{bundle.CreateComputadoraLabel_noMac}" for="noMac" />
+                        <p:inputText id="noMac" value="#{computadoraController.selected.noMac}" title="#{bundle.CreateComputadoraTitle_noMac}" required="true" requiredMessage="#{bundle.CreateComputadoraRequiredMessage_noMac}" validatorMessage="Por favor introduzca correctamente la dirección MAC">
+                            <f:validateRegex
+                                pattern="[0-9|a-z|A-Z][0-9|a-z|A-Z]-[0-9|a-z|A-Z][0-9|a-z|A-Z]-[0-9|a-z|A-Z][0-9|a-z|A-Z]-[0-9|a-z|A-Z][0-9|a-z|A-Z]-[0-9|a-z|A-Z][0-9|a-z|A-Z]-[0-9|a-z|A-Z][0-9|a-z|A-Z]|-"/></p:inputText>
+                        <p:outputLabel value="#{bundle.CreateComputadoraLabel_noSello}" for="noSello" />
+                        <p:inputText id="noSello" value="#{computadoraController.selected.noSello}" title="#{bundle.CreateComputadoraTitle_noSello}" required="true"  requiredMessage="#{bundle.CreateComputadoraRequiredMessage_noSello}" converterMessage="El campo Número de sello debe tener dígitos solamente"/>
+
+                        <p:outputLabel value="#{bundle.CreateComputadoraLabel_sistemaOperativo}" for="sistemaOperativo" />
+                        <p:selectOneMenu style="width: 153px"  id="sistemaOperativo" value="#{computadoraController.selected.sistemaOperativo}" >
+                            <f:selectItems value="#{sistemaOperativoController.itemsAvailableSelectOne}"
+                                           var="sistemaOperativoItem"
+                                           itemValue="#{sistemaOperativoItem}"
+                                           itemLabel="#{sistemaOperativoItem.sistemaOp}"
+
+                                           />
+                        </p:selectOneMenu>
+                         <p:outputLabel value="UEB:" for="lugar" />
+                         <p:selectOneMenu style="width: 153px"  id="lugar" value="#{computadoraController.selected.lugar}"  >
+                            <p:ajax listener="#{computadoraController.valor()}"  update="nombreDireccion" />
+                             <f:selectItem itemValue="--seleccione--" itemLabel="--seleccione--"/>
+                           
+                           <f:selectItems value="#{lugarController.itemsAvailableSelectOne}" 
+                                           var="lugar"
+                                           itemValue="#{lugar}"
+                                           itemLabel="#{lugar.nombre}"/>
+ 
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateComputadoraLabel_nombreDireccion}" for="nombreDireccion" />
+                        <p:selectOneMenu style="width: 153px" id="nombreDireccion" value="#{computadoraController.selected.nombreDireccion}" >
+                           
+                            <f:selectItems value="#{computadoraController.listdir}"
+                                           var="nombreDireccionItem"
+                                           itemValue="#{nombreDireccionItem}"
+                                           itemLabel="#{nombreDireccionItem.nombre}"/>
+                        </p:selectOneMenu>                      
+                        <p:outputLabel value="#{bundle.CreateComputadoraLabel_categoriaEquipo}" for="categoriaEquipo" />
+                        <p:selectOneMenu style="width: 153px" id="categoriaEquipo" value="#{computadoraController.selected.categoriaEquipo}" required="true" requiredMessage="#{bundle.EditComputadoraRequiredMessage_categoriaEquipo}">
+                            <f:selectItems value="#{categoriaEquipoController.itemsAvailableSelectOne}"
+                                           var="categoriaEquipoItem"
+                                           itemValue="#{categoriaEquipoItem}"
+                                           itemLabel="#{categoriaEquipoItem.categoria}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateComputadoraLabel_antivirus}" for="antivirus" />
+                        <p:selectOneMenu style="width: 153px" id="antivirus" value="#{computadoraController.selected.antivirus}" required="true" requiredMessage="#{bundle.EditComputadoraRequiredMessage_antivirus}">
+                            <f:selectItems value="#{antivirusController.itemsAvailableSelectOne}"
+                                           var="antivirusItem"
+                                           itemValue="#{antivirusItem}"
+                                           itemLabel="#{antivirusItem.antivirus}"/>
+                        </p:selectOneMenu>
+                       
+                    </h:panelGrid>
+                    <p:commandButton actionListener="#{computadoraController.create}" value="#{bundle.Save}" update="display,:ComputadoraListForm:datalist,:growl" oncomplete="handleSubmit(args,'ComputadoraCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ComputadoraCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

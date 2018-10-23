@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ComputadoraViewDlg" widgetVar="ComputadoraViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewComputadoraTitle}">
+            <h:form id="ComputadoraViewForm">
+                <h:panelGroup id="display">
+                    <h:panelGrid columns="2" rendered="#{computadoraController.selected != null}">
+                         <h:outputText value="#{bundle.ViewComputadoraLabel_nombrePc}"/>
+                        <h:outputText value="#{computadoraController.selected.nombrePc}" title="#{bundle.ViewComputadoraTitle_nombrePc}"/>
+                        <h:outputText value="#{bundle.ViewComputadoraLabel_noIp}"/>
+                        <h:outputText value="#{computadoraController.selected.noIp}" title="#{bundle.ViewComputadoraTitle_noIp}"/>
+                        <h:outputText value="#{bundle.ViewComputadoraLabel_noMac}"/>
+                        <h:outputText value="#{computadoraController.selected.noMac}" title="#{bundle.ViewComputadoraTitle_noMac}"/>
+                        <h:outputText value="#{bundle.ViewComputadoraLabel_noSello}"/>
+                        <h:outputText value="#{computadoraController.selected.noSello}" title="#{bundle.ViewComputadoraTitle_noSello}"/>
+                        <h:outputText value="#{bundle.ViewComputadoraLabel_sistemaOperativo}"/>
+                        <h:outputText value="#{computadoraController.selected.sistemaOperativo.sistemaOp}" title="#{bundle.ViewComputadoraTitle_sistemaOperativo}"/>
+                        <h:outputText value="#{bundle.ViewComputadoraLabel_nombreDireccion}"/>
+                        <h:outputText value="#{computadoraController.selected.nombreDireccion.nombre}" title="#{bundle.ViewComputadoraTitle_nombreDireccion}"/>
+                        <h:outputText value="#{bundle.ViewComputadoraLabel_categoriaEquipo}"/>
+                        <h:outputText value="#{computadoraController.selected.categoriaEquipo.categoria}" title="#{bundle.ViecategoriaEquipowComputadoraTitle_categoriaEquipo}"/>
+                        <h:outputText value="#{bundle.ViewComputadoraLabel_antivirus}"/>
+                        <h:outputText value="#{computadoraController.selected.antivirus.antivirus}" title="#{bundle.ViewComputadoraTitle_antivirus}"/>
+                    </h:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="ComputadoraViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <ui:composition template="/template.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListCpuTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <c:if test="#{sessionScope['Especialista']==null}" scope="#{sessionScope['Especialista']==null}" >
+                <h:form>
+                    <p:poll interval="0" listener="#{mBSession.cerrar()}"/>
+                </h:form>
+            </c:if>
+            
+            <h:form id="CpuListForm">
+                <p:panel header="#{bundle.ListCpuTitle}">
+                    <p:dataTable id="datalist" value="#{cpuController.items}" var="item"
+                                 selectionMode="single" selection="#{cpuController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.id}"
+                                 rows="10" sortBy="#{item.id}" 
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 >
+
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                        
+                        <p:column filterBy="#{item.modelo}" filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCpuTitle_modelo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.modelo}"/>
+                        </p:column>
+                        <p:column filterBy="#{item.fabricante}" filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCpuTitle_fabricante}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fabricante}"/>
+                        </p:column>
+                        <p:column filterBy="#{item.velocidad}" filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCpuTitle_velocidad}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.velocidad}"/>
+                        </p:column>
+                        <p:column filterBy="#{item.computadoraid.nombrePc}" filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCpuTitle_computadoraid}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.computadoraid.nombrePc}" />
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{cpuController.prepareCreate}" update=":CpuCreateForm" oncomplete="PF('CpuCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":CpuViewForm" oncomplete="PF('CpuViewDialog').show()" disabled="#{empty cpuController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":CpuEditForm" oncomplete="PF('CpuEditDialog').show()" disabled="#{empty cpuController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{cpuController.destroy}" update=":growl,datalist" disabled="#{empty cpuController.selected}"/>
+                        </f:facet>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
+        </ui:define>
+    </ui:composition>
+
+</html>

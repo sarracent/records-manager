@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CpuEditDlg" widgetVar="CpuEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditCpuTitle}">
+            <h:form id="CpuEditForm">
+                <h:panelGroup id="display">
+                    <h:panelGrid columns="2" rendered="#{cpuController.selected != null}">
+                         <p:outputLabel value="#{bundle.EditCpuLabel_modelo}" for="modelo" />
+                        <p:inputText id="modelo" value="#{cpuController.selected.modelo}" title="#{bundle.EditCpuTitle_modelo}" />
+                        <p:outputLabel value="#{bundle.EditCpuLabel_fabricante}" for="fabricante" />
+                        <p:inputText id="fabricante" value="#{cpuController.selected.fabricante}" title="#{bundle.EditCpuTitle_fabricante}" />
+                        <p:outputLabel value="#{bundle.EditCpuLabel_velocidad}" for="velocidad" />
+                        <p:inputText id="velocidad" value="#{cpuController.selected.velocidad}" title="#{bundle.EditCpuTitle_velocidad}" />
+                        
+                    </h:panelGrid>
+                    <p:commandButton actionListener="#{cpuController.updateId(computadoraController.computadora)}" value="#{bundle.Save}" update="display,:CpuListForm:datalist,:growl" oncomplete="handleSubmit(args, 'CpuEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CpuEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

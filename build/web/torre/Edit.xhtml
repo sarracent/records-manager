@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TorreEditDlg" widgetVar="TorreEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditTorreTitle}">
+            <h:form id="TorreEditForm">
+                <h:panelGroup id="display">
+                    <h:panelGrid columns="2" rendered="#{torreController.selected != null}">
+                       <p:outputLabel value="#{bundle.EditTorreLabel_marca}" for="marca" />
+                        <p:inputText id="marca" value="#{torreController.selected.marca}" title="#{bundle.EditTorreTitle_marca}" required="true" requiredMessage="#{bundle.EditTorreRequiredMessage_marca}"/>
+                        <p:outputLabel value="#{bundle.EditTorreLabel_modelo}" for="modelo" />
+                        <p:inputText id="modelo" value="#{torreController.selected.modelo}" title="#{bundle.EditTorreTitle_modelo}" />
+                        <p:outputLabel value="#{bundle.EditTorreLabel_noSerie}" for="noSerie" />
+                        <p:inputText id="noSerie" value="#{torreController.selected.noSerie}" title="#{bundle.EditTorreTitle_noSerie}" />
+                        <p:outputLabel value="#{bundle.EditTorreLabel_noInventario}" for="noInventario" />
+                        <p:inputText id="noInventario" value="#{torreController.selected.noInventario}" title="#{bundle.EditTorreTitle_noInventario}" />
+                        
+                    </h:panelGrid>
+                    <p:commandButton actionListener="#{torreController.updateCid(computadoraController.computadora)}" value="#{bundle.Save}" update="display,:TorreListForm:datalist,:growl" oncomplete="handleSubmit(args, 'TorreEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TorreEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

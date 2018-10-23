@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DvdCreateDlg" widgetVar="DvdCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateDvdTitle}">
+            <h:form id="DvdCreateForm">
+                <h:panelGroup id="display">
+                    <h:panelGrid columns="2" rendered="#{dvdController.selected != null}">
+                          <p:outputLabel value="#{bundle.CreateDvdLabel_marca}" for="marca" />
+                        <p:inputText id="marca" value="#{dvdController.selected.marca}" title="#{bundle.CreateDvdTitle_marca}" />
+                       <p:outputLabel value="#{bundle.CreateDvdLabel_modelo}" for="modelo" />
+                        <p:inputText id="modelo" value="#{dvdController.selected.modelo}" title="#{bundle.CreateDvdTitle_modelo}" />
+                        <p:outputLabel value="#{bundle.CreateDvdLabel_noSerie}" for="noSerie" />
+                        <p:inputText id="noSerie" value="#{dvdController.selected.noSerie}" title="#{bundle.CreateDvdTitle_noSerie}" required="true" requiredMessage="#{bundle.CreateDvdRequiredMessage_noSerie}"/>
+                       
+                    </h:panelGrid>
+                    <p:commandButton actionListener="#{dvdController.createCid(computadoraController.computadora)}" value="#{bundle.Save}" update="display,:DvdListForm:datalist,:growl" oncomplete="handleSubmit(args,'DvdCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="DvdCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

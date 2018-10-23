@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ImpresoraEditDlg" widgetVar="ImpresoraEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditImpresoraTitle}">
+            <h:form id="ImpresoraEditForm">
+                <h:panelGroup id="display">
+                    <h:panelGrid columns="2" rendered="#{impresoraController.selected != null}">
+                         <p:outputLabel value="#{bundle.EditImpresoraLabel_marca}" for="marca" />
+                        <p:inputText id="marca" value="#{impresoraController.selected.marca}" title="#{bundle.EditImpresoraTitle_marca}" />
+                        <p:outputLabel value="#{bundle.EditImpresoraLabel_modelo}" for="modelo" />
+                        <p:inputText id="modelo" value="#{impresoraController.selected.modelo}" title="#{bundle.EditImpresoraTitle_modelo}" />
+                        <p:outputLabel value="#{bundle.EditImpresoraLabel_noSerie}" for="noSerie" />
+                        <p:inputText id="noSerie" value="#{impresoraController.selected.noSerie}" title="#{bundle.EditImpresoraTitle_noSerie}" />
+                        <p:outputLabel value="#{bundle.EditImpresoraLabel_noInventario}" for="noInventario" />
+                        <p:inputText id="noInventario" value="#{impresoraController.selected.noInventario}" title="#{bundle.EditImpresoraTitle_noInventario}" required="true" requiredMessage="#{bundle.EditImpresoraRequiredMessage_noInventario}"/>
+                       
+                    </h:panelGrid>
+                    <p:commandButton actionListener="#{impresoraController.updateCid(computadoraController.computadora)}" value="#{bundle.Save}" update="display,:ImpresoraListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ImpresoraEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ImpresoraEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

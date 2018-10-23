@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ScannerCreateDlg" widgetVar="ScannerCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateScannerTitle}">
+            <h:form id="ScannerCreateForm">
+                <h:panelGroup id="display">
+                    <h:panelGrid columns="2" rendered="#{scannerController.selected != null}">
+                          <p:outputLabel value="#{bundle.CreateScannerLabel_marca}" for="marca" />
+                        <p:inputText id="marca" value="#{scannerController.selected.marca}" title="#{bundle.CreateScannerTitle_marca}" />
+                        <p:outputLabel value="#{bundle.CreateScannerLabel_modelo}" for="modelo" />
+                        <p:inputText id="modelo" value="#{scannerController.selected.modelo}" title="#{bundle.CreateScannerTitle_modelo}" />
+                        <p:outputLabel value="#{bundle.CreateScannerLabel_noSerie}" for="noSerie" />
+                        <p:inputText id="noSerie" value="#{scannerController.selected.noSerie}" title="#{bundle.CreateScannerTitle_noSerie}" />
+                        <p:outputLabel value="#{bundle.CreateScannerLabel_noInventario}" for="noInventario" />
+                        <p:inputText id="noInventario" value="#{scannerController.selected.noInventario}" title="#{bundle.CreateScannerTitle_noInventario}" required="true" requiredMessage="#{bundle.CreateScannerRequiredMessage_noInventario}"/>
+                       
+                    </h:panelGrid>
+                    <p:commandButton actionListener="#{scannerController.createCid(computadoraController.computadora)}" value="#{bundle.Save}" update="display,:ScannerListForm:datalist,:growl" oncomplete="handleSubmit(args,'ScannerCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ScannerCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

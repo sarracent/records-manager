@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <ui:composition template="/template.xhtml">
+        <a href="List.xhtml"></a>
+
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListIncidenciasTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <c:if test="#{sessionScope['Especialista']==null}" scope="#{sessionScope['Especialista']==null}" >
+                <h:form>
+                    <p:poll interval="0" listener="#{mBSession.cerrar()}"/>
+                </h:form>
+            </c:if>
+            <h:form id="IncidenciasListForm">
+                <p:panel header="#{bundle.ListIncidenciasTitle}">
+              
+                    <p:dataTable id="datalist" value="#{incidenciasController.items}" var="item"
+                                 selectionMode="single" selection="#{incidenciasController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.id}"
+                                 rows="10" 
+                                 rowsPerPageTemplate="10,20,30,40,50" sortBy="#{item.nombreIncidencia}"  sortOrder="ascending"
+                                 >
+
+                        <p:ajax event="rowSelect"   update="createButton editButton viewButton"/>
+                        <p:ajax event="rowUnselect" update="createButton editButton viewButton"/>
+
+                        <p:column filterBy="#{item.nombreIncidencia}" filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListIncidenciasTitle_nombreIncidencia}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nombreIncidencia}"/>
+                        </p:column>
+                        
+                        
+                        <p:column filterBy="#{item.especialistas}" filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListIncidenciasTitle_especialistas}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.especialistas}"/>
+                        </p:column>
+                        <p:column filterBy="#{item.operario}" filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListIncidenciasTitle_operario}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.operario}"/>
+                        </p:column>
+                        <p:column filterBy="#{item.computadoraid}" filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListIncidenciasTitle_computadoraid}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.computadoraid.nombrePc}"/>
+                        </p:column>
+                        <p:column filterBy="#{item.categoriaIncidencias}" filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListIncidenciasTitle_categoriaIncidencias}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.categoriaIncidencias.categoria}"/>
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{incidenciasController.prepareCreate}" update=":IncidenciasCreateForm" oncomplete="PF('IncidenciasCreateDialog').show()"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":IncidenciasEditForm" oncomplete="PF('IncidenciasEditDialog').show()" disabled="#{empty incidenciasController.selected}"/>                          
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":IncidenciasViewForm" oncomplete="PF('IncidenciasViewDialog').show()" disabled="#{empty incidenciasController.selected}"/>    
+                        </f:facet>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+
+            <ui:include src="Create.xhtml"/>
+             <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
+        </ui:define>
+    </ui:composition>
+
+</html>

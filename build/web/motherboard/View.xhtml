@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MotherboardViewDlg" widgetVar="MotherboardViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewMotherboardTitle}">
+            <h:form id="MotherboardViewForm">
+                <h:panelGroup id="display">
+                    <h:panelGrid columns="2" rendered="#{motherboardController.selected != null}">
+                       <h:outputText value="#{bundle.ViewMotherboardLabel_marca}"/>
+                        <h:outputText value="#{motherboardController.selected.marca}" title="#{bundle.ViewMotherboardTitle_marca}"/>
+                        <h:outputText value="#{bundle.ViewMotherboardLabel_modelo}"/>
+                        <h:outputText value="#{motherboardController.selected.modelo}" title="#{bundle.ViewMotherboardTitle_modelo}"/>
+                        <h:outputText value="#{bundle.ViewMotherboardLabel_noSerie}"/>
+                        <h:outputText value="#{motherboardController.selected.noSerie}" title="#{bundle.ViewMotherboardTitle_noSerie}"/>
+                        <h:outputText value="#{bundle.ViewMotherboardLabel_computadoraid}"/>
+                        <h:outputText value="#{motherboardController.selected.computadoraid.nombrePc}" title="#{bundle.ViewMotherboardTitle_computadoraid}"/>
+                    </h:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="MotherboardViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

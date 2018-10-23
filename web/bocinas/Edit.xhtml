@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="BocinasEditDlg" widgetVar="BocinasEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditBocinasTitle}">
+            <h:form id="BocinasEditForm">
+                <h:panelGroup id="display">
+                    <h:panelGrid columns="2" rendered="#{bocinasController.selected != null}">
+                         <p:outputLabel value="#{bundle.EditBocinasLabel_marca}" for="marca" />
+                        <p:inputText id="marca" value="#{bocinasController.selected.marca}" title="#{bundle.EditBocinasTitle_marca}" />
+                        <p:outputLabel value="#{bundle.EditBocinasLabel_modelo}" for="modelo" />
+                        <p:inputText id="modelo" value="#{bocinasController.selected.modelo}" title="#{bundle.EditBocinasTitle_modelo}" />
+                        <p:outputLabel value="#{bundle.EditBocinasLabel_noInventario}" for="noInventario" />
+                        <p:inputText id="noInventario" value="#{bocinasController.selected.noInventario}" title="#{bundle.EditBocinasTitle_noInventario}" required="true" requiredMessage="#{bundle.EditBocinasRequiredMessage_noInventario}"/>
+                       
+                        
+                    </h:panelGrid>
+                    <p:commandButton actionListener="#{bocinasController.update}" value="#{bundle.Save}" update="display,:BocinasListForm:datalist,:growl" oncomplete="handleSubmit(args, 'BocinasEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="BocinasEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

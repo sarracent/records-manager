@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="HddViewDlg" widgetVar="HddViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewHddTitle}">
+            <h:form id="HddViewForm">
+                <h:panelGroup id="display">
+                    <h:panelGrid columns="2" rendered="#{hddController.selected != null}">
+                       <h:outputText value="#{bundle.ViewHddLabel_marca}"/>
+                        <h:outputText value="#{hddController.selected.marca}" title="#{bundle.ViewHddTitle_marca}"/>
+                        <h:outputText value="#{bundle.ViewHddLabel_modelo}"/>
+                        <h:outputText value="#{hddController.selected.modelo}" title="#{bundle.ViewHddTitle_modelo}"/>
+                        <h:outputText value="#{bundle.ViewHddLabel_noSerie}"/>
+                        <h:outputText value="#{hddController.selected.noSerie}" title="#{bundle.ViewHddTitle_noSerie}"/>
+                        <h:outputText value="#{bundle.ViewHddLabel_capacidad}"/>
+                        <h:outputText value="#{hddController.selected.capacidad}" title="#{bundle.ViewHddTitle_capacidad}"/>
+                        <h:outputText value="#{bundle.ViewHddLabel_computadoraid}"/>
+                        <h:outputText value="#{hddController.selected.computadoraid.nombrePc}" title="#{bundle.ViewHddTitle_computadoraid}"/>
+                    </h:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="HddViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

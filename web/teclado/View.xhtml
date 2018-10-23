@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TecladoViewDlg" widgetVar="TecladoViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewTecladoTitle}">
+            <h:form id="TecladoViewForm">
+                <h:panelGroup id="display">
+                    <h:panelGrid columns="2" rendered="#{tecladoController.selected != null}">
+                        <h:outputText value="#{bundle.ViewTecladoLabel_id}"/>
+                        <h:outputText value="#{tecladoController.selected.id}" title="#{bundle.ViewTecladoTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewTecladoLabel_marca}"/>
+                        <h:outputText value="#{tecladoController.selected.marca}" title="#{bundle.ViewTecladoTitle_marca}"/>
+                        <h:outputText value="#{bundle.ViewTecladoLabel_modelo}"/>
+                        <h:outputText value="#{tecladoController.selected.modelo}" title="#{bundle.ViewTecladoTitle_modelo}"/>
+                        <h:outputText value="#{bundle.ViewTecladoLabel_noInventario}"/>
+                        <h:outputText value="#{tecladoController.selected.noInventario}" title="#{bundle.ViewTecladoTitle_noInventario}"/>
+                        <h:outputText value="#{bundle.ViewTecladoLabel_computadoraid}"/>
+                        <h:outputText value="#{tecladoController.selected.computadoraid.nombrePc}" title="#{bundle.ViewTecladoTitle_computadoraid}"/>
+                    </h:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="TecladoViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

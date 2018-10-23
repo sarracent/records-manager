@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AguaCemaImprimirDlg" widgetVar="AguaCemaImprimirDialog" modal="true" resizable="false" appendTo="@(body)" header="Imprimir PDF">
+            <h:form id="AguaCemaImprimirForm">
+                <h:panelGroup id="display">
+                    <h:panelGrid columns="2">
+                        <p:outputLabel value="Fecha inicio" for="fechaini" />
+                        <p:calendar id="fechaini" maxdate="#{aguaCemaController.fechaActual}" pattern="dd/MM/yyyy" value="#{aguaCemaController.fechaini}" title="#{bundle.EditAguaCemaTitle_fecha}" required="true" requiredMessage="#{bundle.EditAguaCemaRequiredMessage_fecha}" showOn="button"/>
+
+                        <p:outputLabel value="Fecha fin" for="fechafin" />
+                        <p:calendar maxdate="#{aguaCemaController.fechaActual}" id="fechafin" pattern="dd/MM/yyyy" value="#{aguaCemaController.fechafin}" title="#{bundle.EditAguaCemaTitle_fecha}" required="true" requiredMessage="#{bundle.EditAguaCemaRequiredMessage_fecha}" showOn="button"/>
+
+                    </h:panelGrid>
+                    <p:commandButton action="/aguaCema/List_Jefe_acabado_fecha"  actionListener="#{aguaCemaController.imprimirPdf()}" onclick="PF('AguaCemaImprimirDialog').hide()" oncomplete="PF('AguaCemaImprimirDialog').hide()" value="Download"  ajax="false"   icon="ui-icon-arrowthick-1-s">
+                        <p:fileDownload  value="#{aguaCemaController.file}" />
+                    </p:commandButton>
+                   <p:commandButton value="#{bundle.Cancel}" onclick="AguaCemaImprimirDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+   
+</html>

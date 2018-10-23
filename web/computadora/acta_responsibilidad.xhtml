@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+
+    <ui:composition  template="/template_operario.xhtml">
+
+        <ui:define name="body">
+<c:if test="#{sessionScope['Operario']==null}" scope="#{sessionScope['Operario']==null}" >
+                <h:form>
+                    <p:poll interval="1" listener="#{mBSession.cerrar()}"/>
+                </h:form>
+            </c:if>
+            <f:facet name="header">#{computadoraController.proPc.nombrePc}</f:facet>
+            <div>
+            <div style="margin-top: 50px;font-size: 22px; font-weight: bold; float: top;text-align:center " ><p>ACTA DE COMPROMISO Y RESPONSABILIDAD MATERIAL</p> <p>SOBRE LOS MEDIOS DE CÓMPUTO</p></div>
+            <br></br>
+            <br></br>
+            </div>
+            <div style="width: 70%; text-align: justify;margin-left:200px;font-size: 16px;line-height: 30px" ><p>A los #{fecha.dia()} días del mes #{fecha.mes()} del año #{fecha.año()}. 
+                Nos reunimos los trabajadores de la EMPRESA LABORATORIOS AICA de BIOCUBAFARMA,
+                con el objetivo de afirmar la disposición de aceptar los siguientes acuerdos 
+                para fortalecer la Seguridad Informática dentro de la Entidad. Por lo que firman la misma,
+                para ratificar que están de acuerdo a cumplir estrictamente lo establecido en los siguientes artículos:</p></div>
+           <div style="width: 70%; text-align: justify;margin-left:200px;font-size: 16px;line-height: 30px" > <p>
+                Primero:	Será de estricto cumplimiento lo establecido en la resolución 6/96 del MININT 
+                que hace referencia al reglamento de la Seguridad Informática en los órganos y organismos de la administración 
+                central del estado  y  sus  dependencias, otras entidades estatales, empresas mixtas, sociedades y asociaciones  económicas que se constituyan conforme a la Ley, así como lo establecidos en 
+                las resoluciones RESOLUCIÓN No.  3 de BIOCUBAFARMA, 188/01 y 127/07 del MIC y la 199/99 del Consejo de Estado.
+               </p></div>
+            
+            <div style="width: 70%; text-align: justify;margin-left:200px;font-size: 16px;line-height: 30px" > <p>
+               Segundo:	Será de  estricto cumplimiento las medidas y políticas establecidas en el Plan de Seguridad Informática de esta entidad, así como las tareas, funciones y responsabilidades establecidas para cada trabajador en el sistema de seguridad informática y los planes de contingencias, en dichos documentos.</p></div>
+            
+            <div style="width: 70%; text-align: justify;margin-left:200px;font-size: 16px;line-height: 30px" > <p>
+              Tercero: Será de estricto cumplimiento los puntos definidos en los reglamentos internos de red informática y códigos de ética que se establezcan en la entidad,  para regular la correcta utilización de las estaciones 
+              de trabajo, el servicio del correo electrónico, el manejo de las Redes y la navegación en Internet.</p></div>
+            
+            <div style="width: 60%; text-align: justify;margin-left:200px;font-size: 16px;line-height: 30px" > <p>
+              Cuarto: 	Serán de estricto cumplimiento las medidas adoptadas por la institución, para el cuidado y mantenimiento de los medios de cómputo, siendo los usuarios los máximos responsables de su integridad.</p></div>
+        
+            <div style="width: 70%; text-align: justify;margin-left:200px;font-size: 16px;line-height: 30px" > <p>
+             Quinto:	La trasgresión de lo dispuesto y relacionado en los artículos del primero al cuarto del presente documento, dará lugar a la imposición de medidas disciplinarias que serán ejecutadas por los jefes administrativos facultados a cada nivel. Sin perjuicio a la responsabilidad penal que pudiera ser exigible o las medidas disciplinarias que pudieran aplicarse ante actos o conductas que también violen la disciplina laboral prevista en el reglamento interno de la UJC, el PCC o en el sistema de justicia laboral vigente.</p></div>
+        <div style="width: 70%; text-align: justify;margin-left:200px;font-size: 16px;line-height: 30px" > <p>
+                Se le anexa a la siguiente acta el inventario digital del medio de cómputo asignado del cual se hace responsable. A continuación firmaremos la presente para reafirmar que tenemos conocimiento de los aspectos antes señalados.</p></div>
+        </ui:define>
+    </ui:composition>
+</html>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="RamCreateDlg" widgetVar="RamCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateRamTitle}">
+            <h:form id="RamCreateForm">
+                <h:panelGroup id="display">
+                    <h:panelGrid columns="2" rendered="#{ramController.selected != null}">
+                           <p:outputLabel value="#{bundle.CreateRamLabel_marca}" for="marca" />
+                        <p:inputText id="marca" value="#{ramController.selected.marca}" title="#{bundle.CreateRamTitle_marca}" required="true" requiredMessage="#{bundle.CreateRamRequiredMessage_marca}"/>
+                        <p:outputLabel value="#{bundle.CreateRamLabel_modelo}" for="modelo" />
+                        <p:inputText id="modelo" value="#{ramController.selected.modelo}" title="#{bundle.CreateRamTitle_modelo}" required="true" requiredMessage="#{bundle.CreateRamRequiredMessage_modelo}"/>
+                        <p:outputLabel value="#{bundle.CreateRamLabel_noSerie}" for="noSerie" />
+                        <p:inputText id="noSerie" value="#{ramController.selected.noSerie}" title="#{bundle.CreateRamTitle_noSerie}" required="true" requiredMessage="#{bundle.CreateRamRequiredMessage_noSerie}"/>
+                        <p:outputLabel value="#{bundle.CreateRamLabel_capacidad}" for="capacidad" />
+                        <p:inputText id="capacidad" value="#{ramController.selected.capacidad}" title="#{bundle.CreateRamTitle_capacidad}" />
+                        
+                    </h:panelGrid>
+                    <p:commandButton actionListener="#{ramController.createCid(computadoraController.computadora)}" value="#{bundle.Save}" update="display,:RamListForm:datalist,:growl" oncomplete="handleSubmit(args,'RamCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="RamCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

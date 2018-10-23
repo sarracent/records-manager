@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TorreCreateDlg" widgetVar="TorreCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateTorreTitle}">
+            <h:form id="TorreCreateForm">
+                <h:panelGroup id="display">
+                    <h:panelGrid columns="2" rendered="#{torreController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateTorreLabel_marca}" for="marca" />
+                        <p:inputText id="marca" value="#{torreController.selected.marca}" title="#{bundle.CreateTorreTitle_marca}" required="true" requiredMessage="#{bundle.CreateTorreRequiredMessage_marca}"/>
+                        <p:outputLabel value="#{bundle.CreateTorreLabel_modelo}" for="modelo" />
+                        <p:inputText id="modelo" value="#{torreController.selected.modelo}" title="#{bundle.CreateTorreTitle_modelo}" />
+                        <p:outputLabel value="#{bundle.CreateTorreLabel_noSerie}" for="noSerie" />
+                        <p:inputText id="noSerie" value="#{torreController.selected.noSerie}" title="#{bundle.CreateTorreTitle_noSerie}" />
+                        <p:outputLabel value="#{bundle.CreateTorreLabel_noInventario}" for="noInventario" />
+                        <p:inputText id="noInventario" value="#{torreController.selected.noInventario}" title="#{bundle.CreateTorreTitle_noInventario}" />
+                        
+                    </h:panelGrid>
+                    <p:commandButton actionListener="#{torreController.createCid(computadoraController.computadora)}" value="#{bundle.Save}" update="display,:TorreListForm:datalist,:growl" oncomplete="handleSubmit(args,'TorreCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TorreCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

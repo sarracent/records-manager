@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ImpresoraViewDlg" widgetVar="ImpresoraViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewImpresoraTitle}">
+            <h:form id="ImpresoraViewForm">
+                <h:panelGroup id="display">
+                    <h:panelGrid columns="2" rendered="#{impresoraController.selected != null}">
+                          <h:outputText value="#{bundle.ViewImpresoraLabel_marca}"/>
+                        <h:outputText value="#{impresoraController.selected.marca}" title="#{bundle.ViewImpresoraTitle_marca}"/>
+                        <h:outputText value="#{bundle.ViewImpresoraLabel_modelo}"/>
+                        <h:outputText value="#{impresoraController.selected.modelo}" title="#{bundle.ViewImpresoraTitle_modelo}"/>
+                        <h:outputText value="#{bundle.ViewImpresoraLabel_noSerie}"/>
+                        <h:outputText value="#{impresoraController.selected.noSerie}" title="#{bundle.ViewImpresoraTitle_noSerie}"/>
+                        <h:outputText value="#{bundle.ViewImpresoraLabel_noInventario}"/>
+                        <h:outputText value="#{impresoraController.selected.noInventario}" title="#{bundle.ViewImpresoraTitle_noInventario}"/>
+                        <h:outputText value="#{bundle.ViewImpresoraLabel_computadoraid}"/>
+                        <h:outputText value="#{impresoraController.selected.computadoraid.nombrePc}" title="#{bundle.ViewImpresoraTitle_computadoraid}"/>
+                    </h:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="ImpresoraViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

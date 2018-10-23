@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title><ui:insert name="title">Default Title</ui:insert></title>
+        <h:outputStylesheet library="css" name="jsfcrud.css"/>
+        <h:outputScript library="js" name="jsfcrud.js"/>
+    </h:head>
+
+    <h:body>
+
+        <p:growl id="growl" life="3000" />
+
+        <p:layout fullPage="true">
+
+            <p:layoutUnit position="north" size="80" header="#{bundle.AppName}"> 
+
+                <h:form id="menuForm">
+
+                    <p:menubar  >
+
+                        <p:menuitem value=" Expedientes" outcome="/computadora/List.xhtml" icon="fa fa-file"/>
+                        <p:menuitem value=" UEB" outcome="/lugar/List.xhtml"  icon="fa fa-home"/>
+                        <p:menuitem value="Areas" outcome="/direccion/List.xhtml" icon="fa fa-sitemap" /> 
+                        <p:submenu label="Equipos" icon="fa fa-gears" >
+                            <p:menuitem value="Antivirus" outcome="/antivirus/List.xhtml" icon="fa fa-bug" />
+                            <p:menuitem value="Categoria" outcome="/categoriaEquipo/List.xhtml" icon="fa fa-paperclip" />
+                            <p:menuitem value="Sistema Operativo" outcome="/sistemaOperativo/List.xhtml" icon="fa fa-windows"/>
+                        </p:submenu>
+                        <p:submenu label="Componentes" icon="fa fa-puzzle-piece">
+                            <p:menuitem value="Torre" outcome="/torre/List.xhtml" />
+                            <p:menuitem value="Dvd" outcome="/dvd/List.xhtml" />
+                            <p:menuitem value="Bocinas" outcome="/bocinas/List.xhtml"/>
+
+                            <p:menuitem value="Fotocopiadora" outcome="/fotocopiadora/List.xhtml" />
+                            <p:menuitem value="Hdd" outcome="/hdd/List.xhtml" />
+                            <p:menuitem value="Impresora" outcome="/impresora/List.xhtml" />
+                            <p:menuitem value="Monitor" outcome="/monitor/List.xhtml" />
+                            <p:menuitem value="Motherboard" outcome="/motherboard/List.xhtml" />
+                            <p:menuitem value="CPU" outcome="/cpu/List.xhtml" />
+                            <p:menuitem value="Mouse" outcome="/mouse/List.xhtml" />
+                            <p:menuitem value="Ram" outcome="/ram/List.xhtml" />
+                            <p:menuitem value="Scanner" outcome="/scanner/List.xhtml" />
+                            <p:menuitem value="Teclado" outcome="/teclado/List.xhtml" />
+                            <p:menuitem value="Ups" outcome="/ups/List.xhtml" />
+                        </p:submenu>
+                        <p:submenu  label="Usuarios" icon="fa fa-user-plus" >
+                            <p:menuitem value="Usuarios" outcome="/usuarios/List.xhtml" icon="fa fa-user-plus" />
+                            <p:menuitem value="Rol" outcome="/rol/List.xhtml" icon="fa fa-users"/>
+                        </p:submenu>
+
+                        <p:menuitem value="#{sessionScope['Especialista']}" style="right: 110px;position: absolute" icon="fa fa-user"/>
+                        <p:menuitem value="cerrar" action="#{user.logout()}" style="right: 20px;position: absolute" icon="fa fa-close"/>
+                    </p:menubar>
+                </h:form>
+
+            </p:layoutUnit>
+
+
+
+            <p:layoutUnit position="center">
+
+                <ui:insert name="body"/>
+
+            </p:layoutUnit>
+
+        </p:layout>
+
+    </h:body>
+
+</html>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SistemaOperativoCreateDlg" widgetVar="SistemaOperativoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateSistemaOperativoTitle}">
+            <h:form id="SistemaOperativoCreateForm">
+                <h:panelGroup id="display">
+                    <h:panelGrid columns="2" rendered="#{sistemaOperativoController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateSistemaOperativoLabel_sistemaOp}" for="sistemaOp" />
+                        <p:inputText id="sistemaOp" value="#{sistemaOperativoController.selected.sistemaOp}" title="#{bundle.CreateSistemaOperativoTitle_sistemaOp}" required="true" requiredMessage="#{bundle.CreateSistemaOperativoRequiredMessage_sistemaOp}"/>
+                    </h:panelGrid>
+                    <p:commandButton actionListener="#{sistemaOperativoController.create}" value="#{bundle.Save}" update="display,:SistemaOperativoListForm:datalist,:growl" oncomplete="handleSubmit(args,'SistemaOperativoCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="SistemaOperativoCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="IncidenciasViewDlg" widgetVar="IncidenciasViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewIncidenciasTitle}">
+            <h:form id="IncidenciasViewForm">
+                <h:panelGroup id="display">
+                    <h:panelGrid columns="2" rendered="#{incidenciasController.selected != null}">
+                        <h:outputText value="#{bundle.ViewIncidenciasLabel_id}"/>
+                        <h:outputText value="#{incidenciasController.selected.id}" title="#{bundle.ViewIncidenciasTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewIncidenciasLabel_observaciones}"/>
+                        <h:outputText value="#{incidenciasController.selected.observaciones}" title="#{bundle.ViewIncidenciasTitle_observaciones}"/>
+                        <h:outputText value="#{bundle.ViewIncidenciasLabel_especialistas}"/>
+                        <h:outputText value="#{incidenciasController.selected.especialistas}" title="#{bundle.ViewIncidenciasTitle_especialistas}"/>
+                        <h:outputText value="#{bundle.ViewIncidenciasLabel_operario}"/>
+                        <h:outputText value="#{incidenciasController.selected.operario}" title="#{bundle.ViewIncidenciasTitle_operario}"/>
+                        <h:outputText value="#{bundle.ViewIncidenciasLabel_computadoraid}"/>
+                        <h:outputText value="#{incidenciasController.selected.computadoraid}" title="#{bundle.ViewIncidenciasTitle_computadoraid}"/>
+                        <h:outputText value="#{bundle.ViewIncidenciasLabel_categoriaIncidencias}"/>
+                        <h:outputText value="#{incidenciasController.selected.categoriaIncidencias.categoria}" title="#{bundle.ViewIncidenciasTitle_categoriaIncidencias}"/>
+                        <h:outputText value="#{bundle.ViewIncidenciasLabel_nombreIncidencia}"/>
+                        <h:outputText value="#{incidenciasController.selected.nombreIncidencia}" title="#{bundle.ViewIncidenciasTitle_nombreIncidencia}"/>
+                    </h:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="IncidenciasViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

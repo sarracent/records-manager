@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Gestor de expedientes técnicos</title>
+        <h:outputStylesheet name="css/jsfcrud.css"/>
+    </h:head>
+    <h:body>
+
+        <p:graphicImage style="position: absolute; top:2%;left:1%" width="200" value="/img/logo.png"/>
+
+        <div style="color: #0088a8;font-family: 'Arial';font-size: 18px;position: absolute;left: 31%;top: 10%; font-weight: bold"><h1>Gestor de Expedientes Técnicos</h1></div>
+       
+        <div id="prueba">
+            <h:form class="login">
+                <h:panelGrid columns="1" id="index" class="">
+                    <p:growl/>
+                    <p:inputText style="text-align: center;border:none" id="usuario" class="ui-input-login" value="#{user.usuario}" placeholder="usuario"  title="usuario" required="true" requiredMessage="#{bundle.CreateIncidenciasRequiredMessage_observaciones}"/>
+                    <p:password style="text-align: center;border:none"  id="pass" class="ui-input-login" value="#{user.password}" placeholder="contraseña" title="contraseña" required="true" requiredMessage="#{bundle.CreateIncidenciasRequiredMessage_observaciones}"/>
+                    <p:commandButton style="background: #0088a8 !important;color: white;border: none"  value="entrar" action="#{user.auth()}" update="index" ajax="false" />
+                </h:panelGrid>
+            </h:form> 
+        </div>
+        <br />
+
+        <br />
+       
+    </h:body>
+
+
+</html>
+

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="FotocopiadoraEditDlg" widgetVar="FotocopiadoraEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditFotocopiadoraTitle}">
+            <h:form id="FotocopiadoraEditForm">
+                <h:panelGroup id="display">
+                    <h:panelGrid columns="2" rendered="#{fotocopiadoraController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditFotocopiadoraLabel_marca}" for="marca" />
+                        <p:inputText id="marca" value="#{fotocopiadoraController.selected.marca}" title="#{bundle.EditFotocopiadoraTitle_marca}" />
+                        <p:outputLabel value="#{bundle.EditFotocopiadoraLabel_modelo}" for="modelo" />
+                        <p:inputText id="modelo" value="#{fotocopiadoraController.selected.modelo}" title="#{bundle.EditFotocopiadoraTitle_modelo}" />
+                        <p:outputLabel value="#{bundle.EditFotocopiadoraLabel_noSerie}" for="noSerie" />
+                        <p:inputText id="noSerie" value="#{fotocopiadoraController.selected.noSerie}" title="#{bundle.EditFotocopiadoraTitle_noSerie}" />
+                        <p:outputLabel value="#{bundle.EditFotocopiadoraLabel_noInventario}" for="noInventario" />
+                        <p:inputText id="noInventario" value="#{fotocopiadoraController.selected.noInventario}" title="#{bundle.EditFotocopiadoraTitle_noInventario}" />
+                        
+                    </h:panelGrid>
+                    <p:commandButton actionListener="#{fotocopiadoraController.updateCid(computadoraController.computadora)}" value="#{bundle.Save}" update="display,:FotocopiadoraListForm:datalist,:growl" oncomplete="handleSubmit(args, 'FotocopiadoraEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="FotocopiadoraEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

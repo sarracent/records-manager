@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ReporteCreateDlg" widgetVar="ReporteCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle1.CreateReporteTitle}">
+            <h:form id="ReporteCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{reporteController.selected != null}">
+                        <p:outputLabel value="#{bundle1.CreateReporteLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{reporteController.selected.id}" title="#{bundle1.CreateReporteTitle_id}" required="true" requiredMessage="#{bundle1.CreateReporteRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle1.CreateReporteLabel_conformidad}" for="conformidad" />
+                        <p:inputText id="conformidad" value="#{reporteController.selected.conformidad}" title="#{bundle1.CreateReporteTitle_conformidad}" />
+                        <p:outputLabel value="#{bundle1.CreateReporteLabel_correo}" for="correo" />
+                        <p:inputText id="correo" value="#{reporteController.selected.correo}" title="#{bundle1.CreateReporteTitle_correo}" />
+                        <p:outputLabel value="#{bundle1.CreateReporteLabel_especialista}" for="especialista" />
+                        <p:inputText id="especialista" value="#{reporteController.selected.especialista}" title="#{bundle1.CreateReporteTitle_especialista}" />
+                        <p:outputLabel value="#{bundle1.CreateReporteLabel_estadoReporte}" for="estadoReporte" />
+                        <p:inputText id="estadoReporte" value="#{reporteController.selected.estadoReporte}" title="#{bundle1.CreateReporteTitle_estadoReporte}" />
+                        <p:outputLabel value="#{bundle1.CreateReporteLabel_fechaCreado}" for="fechaCreado" />
+                        <p:inputText id="fechaCreado" value="#{reporteController.selected.fechaCreado}" title="#{bundle1.CreateReporteTitle_fechaCreado}" />
+                        <p:outputLabel value="#{bundle1.CreateReporteLabel_fechaSolucion}" for="fechaSolucion" />
+                        <p:inputText id="fechaSolucion" value="#{reporteController.selected.fechaSolucion}" title="#{bundle1.CreateReporteTitle_fechaSolucion}" />
+                        <p:outputLabel value="#{bundle1.CreateReporteLabel_observacion}" for="observacion" />
+                        <p:inputText id="observacion" value="#{reporteController.selected.observacion}" title="#{bundle1.CreateReporteTitle_observacion}" />
+                        <p:outputLabel value="#{bundle1.CreateReporteLabel_solucion}" for="solucion" />
+                        <p:inputText id="solucion" value="#{reporteController.selected.solucion}" title="#{bundle1.CreateReporteTitle_solucion}" />
+                        <p:outputLabel value="#{bundle1.CreateReporteLabel_usuario}" for="usuario" />
+                        <p:inputText id="usuario" value="#{reporteController.selected.usuario}" title="#{bundle1.CreateReporteTitle_usuario}" />
+                        <p:outputLabel value="#{bundle1.CreateReporteLabel_area}" for="area" />
+                        <p:inputText id="area" value="#{reporteController.selected.area}" title="#{bundle1.CreateReporteTitle_area}" />
+                        <p:outputLabel value="#{bundle1.CreateReporteLabel_equipo}" for="equipo" />
+                        <p:inputText id="equipo" value="#{reporteController.selected.equipo}" title="#{bundle1.CreateReporteTitle_equipo}" />
+                        <p:outputLabel value="#{bundle1.CreateReporteLabel_titulo}" for="titulo" />
+                        <p:inputText id="titulo" value="#{reporteController.selected.titulo}" title="#{bundle1.CreateReporteTitle_titulo}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{reporteController.create}" value="#{bundle1.Save}" update="display,:ReporteListForm:datalist,:growl" oncomplete="handleSubmit(args,'ReporteCreateDialog');"/>
+                    <p:commandButton value="#{bundle1.Cancel}" onclick="ReporteCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="UpsViewDlg" widgetVar="UpsViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewUpsTitle}">
+            <h:form id="UpsViewForm">
+                <h:panelGroup id="display">
+                    <h:panelGrid columns="2" rendered="#{upsController.selected != null}">
+                        <h:outputText value="#{bundle.ViewUpsLabel_id}"/>
+                        <h:outputText value="#{upsController.selected.id}" title="#{bundle.ViewUpsTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewUpsLabel_marca}"/>
+                        <h:outputText value="#{upsController.selected.marca}" title="#{bundle.ViewUpsTitle_marca}"/>
+                        <h:outputText value="#{bundle.ViewUpsLabel_modelo}"/>
+                        <h:outputText value="#{upsController.selected.modelo}" title="#{bundle.ViewUpsTitle_modelo}"/>
+                        <h:outputText value="#{bundle.ViewUpsLabel_noSerie}"/>
+                        <h:outputText value="#{upsController.selected.noSerie}" title="#{bundle.ViewUpsTitle_noSerie}"/>
+                        <h:outputText value="#{bundle.ViewUpsLabel_noInventario}"/>
+                        <h:outputText value="#{upsController.selected.noInventario}" title="#{bundle.ViewUpsTitle_noInventario}"/>
+                        <h:outputText value="#{bundle.ViewUpsLabel_computadoraid}"/>
+                        <h:outputText value="#{upsController.selected.computadoraid.nombrePc}" title="#{bundle.ViewUpsTitle_computadoraid}"/>
+                    </h:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="UpsViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

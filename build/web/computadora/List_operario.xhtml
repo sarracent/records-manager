@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <ui:composition template="/template_operario.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListComputadoraTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+<c:if test="#{sessionScope['Operario']==null}" scope="#{sessionScope['Operario']==null}" >
+                <h:form>
+                    <p:poll interval="0" listener="#{mBSession.cerrar()}"/>
+                </h:form>
+            </c:if>
+            <h:form id="ComputadoraListForm">
+
+                <p:panel header="#{bundle.ListComputadoraTitle}">
+                    <p:dataTable  id="datalist" value="#{computadoraController.items}" var="item"
+                                  selectionMode="single" selection="#{computadoraController.selected}"
+                                  paginator="true"
+                                  rowKey="#{item.id}"
+                                  rows="10"
+                                  rowsPerPageTemplate="10,20,30,40,50" sortBy="#{item.nombrePc}"  sortOrder="ascending"
+                                  >
+
+                        <p:ajax event="rowSelect"   update=" viewButton  firmar  "/>
+                        <p:ajax event="rowUnselect" update=" viewButton  firmar  "/>
+
+
+                        <p:column  filterBy="#{item.nombrePc}" filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListComputadoraTitle_nombrePc}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nombrePc}"/>
+                        </p:column>
+                        <p:column filterBy="#{item.noIp}" filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListComputadoraTitle_noIp}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.noIp}"/>
+                        </p:column>
+                        <p:column filterBy="#{item.noMac}" filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListComputadoraTitle_noMac}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.noMac}"/>
+                        </p:column>
+                        <p:column filterBy="#{item.noSello}" filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListComputadoraTitle_noSello}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.noSello}"/>
+                        </p:column>
+                        <p:column filterBy="#{item.sistemaOperativo}" filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListComputadoraTitle_sistemaOperativo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.sistemaOperativo.sistemaOp}"/>
+                        </p:column>
+                        <p:column filterBy="#{item.nombreDireccion.nombre}" filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListComputadoraTitle_nombreDireccion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nombreDireccion.nombre}"/>
+                        </p:column>
+                        <p:column filterBy="#{item.categoriaEquipo.categoria}" filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListComputadoraTitle_categoriaEquipo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.categoriaEquipo.categoria}"/>
+                        </p:column>
+                        <p:column filterBy="#{item.antivirus.antivirus}" filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListComputadoraTitle_antivirus}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.antivirus.antivirus}"/>
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton id="viewButton"  value="Mostrar" actionListener="#{computadoraController.getComputadora()}" action="propertiesPc_operario" rendered="true" disabled="#{empty computadoraController.selected}"/>
+                             <p:commandButton id="firmar" actionListener="#{computadoraController.firmarPDF()}" icon="ui-icon-pencil"   value="Firmar" update="IncidenciasCreateForm"  oncomplete="PF('dlgDialogo').show()" disabled="#{empty computadoraController.selected}" />     
+                             </f:facet>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+
+
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
+            <ui:include src="pass_firma_operario.xhtml"/>
+        </ui:define>
+    </ui:composition>
+
+</html>

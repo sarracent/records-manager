@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="HddEditDlg" widgetVar="HddEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditHddTitle}">
+            <h:form id="HddEditForm">
+                <h:panelGroup id="display">
+                    <h:panelGrid columns="2" rendered="#{hddController.selected != null}">
+                         <p:outputLabel value="#{bundle.EditHddLabel_marca}" for="marca" />
+                        <p:inputText id="marca" value="#{hddController.selected.marca}" title="#{bundle.EditHddTitle_marca}" />
+                        <p:outputLabel value="#{bundle.EditHddLabel_modelo}" for="modelo" />
+                        <p:inputText id="modelo" value="#{hddController.selected.modelo}" title="#{bundle.EditHddTitle_modelo}" required="true" requiredMessage="#{bundle.EditHddRequiredMessage_modelo}"/>
+                        <p:outputLabel value="#{bundle.EditHddLabel_noSerie}" for="noSerie" />
+                        <p:inputText id="noSerie" value="#{hddController.selected.noSerie}" title="#{bundle.EditHddTitle_noSerie}" required="true" requiredMessage="#{bundle.EditHddRequiredMessage_noSerie}"/>
+                        <p:outputLabel value="#{bundle.EditHddLabel_capacidad}" for="capacidad" />
+                        <p:inputText id="capacidad" value="#{hddController.selected.capacidad}" title="#{bundle.EditHddTitle_capacidad}" required="true" requiredMessage="#{bundle.EditHddRequiredMessage_capacidad}"/>
+                        
+                    </h:panelGrid>
+                    <p:commandButton actionListener="#{hddController.updateCid(computadoraController.computadora)}" value="#{bundle.Save}" update="display,:HddListForm:datalist,:growl" oncomplete="handleSubmit(args, 'HddEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="HddEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

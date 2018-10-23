@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MouseViewDlg" widgetVar="MouseViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewMouseTitle}">
+            <h:form id="MouseViewForm">
+                <h:panelGroup id="display">
+                    <h:panelGrid columns="2" rendered="#{mouseController.selected != null}">
+                       <h:outputText value="#{bundle.ViewMouseLabel_marca}"/>
+                        <h:outputText value="#{mouseController.selected.marca}" title="#{bundle.ViewMouseTitle_marca}"/>
+                        <h:outputText value="#{bundle.ViewMouseLabel_modelo}"/>
+                        <h:outputText value="#{mouseController.selected.modelo}" title="#{bundle.ViewMouseTitle_modelo}"/>
+                        <h:outputText value="#{bundle.ViewMouseLabel_noInventario}"/>
+                        <h:outputText value="#{mouseController.selected.noInventario}" title="#{bundle.ViewMouseTitle_noInventario}"/>
+                        <h:outputText value="#{bundle.ViewMouseLabel_computadoraid}"/>
+                        <h:outputText value="#{mouseController.selected.computadoraid.nombrePc}" title="#{bundle.ViewMouseTitle_computadoraid}"/>
+                    </h:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="MouseViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

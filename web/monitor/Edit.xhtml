@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MonitorEditDlg" widgetVar="MonitorEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditMonitorTitle}">
+            <h:form id="MonitorEditForm">
+                <h:panelGroup id="display">
+                    <h:panelGrid columns="2" rendered="#{monitorController.selected != null}">
+                         <p:outputLabel value="#{bundle.EditMonitorLabel_marca}" for="marca" />
+                        <p:inputText id="marca" value="#{monitorController.selected.marca}" title="#{bundle.EditMonitorTitle_marca}" />
+                        <p:outputLabel value="#{bundle.EditMonitorLabel_modelo}" for="modelo" />
+                        <p:inputText id="modelo" value="#{monitorController.selected.modelo}" title="#{bundle.EditMonitorTitle_modelo}" />
+                        <p:outputLabel value="#{bundle.EditMonitorLabel_noSerie}" for="noSerie" />
+                        <p:inputText id="noSerie" value="#{monitorController.selected.noSerie}" title="#{bundle.EditMonitorTitle_noSerie}" />
+                        <p:outputLabel value="#{bundle.EditMonitorLabel_noInventario}" for="noInventario" />
+                        <p:inputText id="noInventario" value="#{monitorController.selected.noInventario}" title="#{bundle.EditMonitorTitle_noInventario}" />
+                        
+                    </h:panelGrid>
+                    <p:commandButton actionListener="#{monitorController.updateCid(computadoraController.computadora)}" value="#{bundle.Save}" update="display,:MonitorListForm:datalist,:growl" oncomplete="handleSubmit(args, 'MonitorEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="MonitorEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

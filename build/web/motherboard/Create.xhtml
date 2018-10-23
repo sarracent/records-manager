@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MotherboardCreateDlg" widgetVar="MotherboardCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateMotherboardTitle}">
+            <h:form id="MotherboardCreateForm">
+                <h:panelGroup id="display">
+                    <h:panelGrid columns="2" rendered="#{motherboardController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateMotherboardLabel_marca}" for="marca" />
+                        <p:inputText id="marca" value="#{motherboardController.selected.marca}" title="#{bundle.CreateMotherboardTitle_marca}" />
+                        <p:outputLabel value="#{bundle.CreateMotherboardLabel_modelo}" for="modelo" />
+                        <p:inputText id="modelo" value="#{motherboardController.selected.modelo}" title="#{bundle.CreateMotherboardTitle_modelo}" />
+                        <p:outputLabel value="#{bundle.CreateMotherboardLabel_noSerie}" for="noSerie" />
+                        <p:inputText id="noSerie" value="#{motherboardController.selected.noSerie}" title="#{bundle.CreateMotherboardTitle_noSerie}" required="true" requiredMessage="#{bundle.CreateMotherboardRequiredMessage_noSerie}"/>
+                        
+                    </h:panelGrid>
+                    <p:commandButton actionListener="#{motherboardController.createCid(computadoraController.computadora)}" value="#{bundle.Save}" update="display,:MotherboardListForm:datalist,:growl" oncomplete="handleSubmit(args,'MotherboardCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="MotherboardCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

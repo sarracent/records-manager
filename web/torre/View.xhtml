@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TorreViewDlg" widgetVar="TorreViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewTorreTitle}">
+            <h:form id="TorreViewForm">
+                <h:panelGroup id="display">
+                    <h:panelGrid columns="2" rendered="#{torreController.selected != null}">
+                        <h:outputText value="#{bundle.ViewTorreLabel_marca}"/>
+                        <h:outputText value="#{torreController.selected.marca}" title="#{bundle.ViewTorreTitle_marca}"/>
+                        <h:outputText value="#{bundle.ViewTorreLabel_modelo}"/>
+                        <h:outputText value="#{torreController.selected.modelo}" title="#{bundle.ViewTorreTitle_modelo}"/>
+                        <h:outputText value="#{bundle.ViewTorreLabel_noSerie}"/>
+                        <h:outputText value="#{torreController.selected.noSerie}" title="#{bundle.ViewTorreTitle_noSerie}"/>
+                        <h:outputText value="#{bundle.ViewTorreLabel_noInventario}"/>
+                        <h:outputText value="#{torreController.selected.noInventario}" title="#{bundle.ViewTorreTitle_noInventario}"/>
+                        <h:outputText value="#{bundle.ViewTorreLabel_computadoraid}"/>
+                        <h:outputText value="#{torreController.selected.computadoraid.nombrePc}" title="#{bundle.ViewTorreTitle_computadoraid}"/>
+                    </h:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="TorreViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

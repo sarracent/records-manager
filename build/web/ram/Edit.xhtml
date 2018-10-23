@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="RamEditDlg" widgetVar="RamEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditRamTitle}">
+            <h:form id="RamEditForm">
+                <h:panelGroup id="display">
+                    <h:panelGrid columns="2" rendered="#{ramController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditRamLabel_marca}" for="marca" />
+                        <p:inputText id="marca" value="#{ramController.selected.marca}" title="#{bundle.EditRamTitle_marca}" required="true" requiredMessage="#{bundle.EditRamRequiredMessage_marca}"/>
+                        <p:outputLabel value="#{bundle.EditRamLabel_modelo}" for="modelo" />
+                        <p:inputText id="modelo" value="#{ramController.selected.modelo}" title="#{bundle.EditRamTitle_modelo}" required="true" requiredMessage="#{bundle.EditRamRequiredMessage_modelo}"/>
+                        <p:outputLabel value="#{bundle.EditRamLabel_noSerie}" for="noSerie" />
+                        <p:inputText id="noSerie" value="#{ramController.selected.noSerie}" title="#{bundle.EditRamTitle_noSerie}" required="true" requiredMessage="#{bundle.EditRamRequiredMessage_noSerie}"/>
+                        <p:outputLabel value="#{bundle.EditRamLabel_capacidad}" for="capacidad" />
+                        <p:inputText id="capacidad" value="#{ramController.selected.capacidad}" title="#{bundle.EditRamTitle_capacidad}" />
+                        
+                    </h:panelGrid>
+                    <p:commandButton actionListener="#{ramController.updateCid(computadoraController.computadora)}" value="#{bundle.Save}" update="display,:RamListForm:datalist,:growl" oncomplete="handleSubmit(args, 'RamEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="RamEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

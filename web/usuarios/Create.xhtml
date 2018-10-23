@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="UsuariosCreateDlg" widgetVar="UsuariosCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateUsuariosTitle}">
+            <h:form id="UsuariosCreateForm">
+                <h:panelGroup id="display">
+                    <h:panelGrid columns="2" rendered="#{usuariosController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateUsuariosLabel_usuario}" for="usuario" />
+                        <p:inputText id="usuario" value="#{usuariosController.selected.usuario}" title="#{bundle.CreateUsuariosTitle_usuario}" required="true" requiredMessage="#{bundle.CreateUsuariosRequiredMessage_usuario}"/>
+                        <p:outputLabel value="#{bundle.CreateUsuariosLabel_nombre}" for="nombre" />
+                        <p:inputText id="nombre" value="#{usuariosController.selected.nombre}" required="true" requiredMessage="El campo Nombre está vacío" title="#{bundle.CreateUsuariosTitle_nombre}" />
+                        <p:outputLabel value="#{bundle.CreateUsuariosLabel_apellidos}" for="apellidos" />
+                        <p:inputText id="apellidos" value="#{usuariosController.selected.apellidos}" required="true" requiredMessage="El campo Apellidos está vacío" title="#{bundle.CreateUsuariosTitle_apellidos}" />
+                        <p:outputLabel value="#{bundle.CreateUsuariosLabel_correo}" for="correo" />
+                        <p:inputText id="correo" value="#{usuariosController.selected.correo}" title="#{bundle.CreateUsuariosTitle_correo}" required="true" requiredMessage="#{bundle.CreateUsuariosRequiredMessage_correo}" validatorMessage="Inserte correctamente la dirección de correo">
+                        <f:validateRegex
+		pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                        </p:inputText>
+                       <p:outputLabel value="#{bundle.CreateUsuariosLabel_rol}" for="rol" />
+                       <p:selectOneMenu id="rol" style="width: 153px" value="#{usuariosController.selected.rol}" required="true" requiredMessage="#{bundle.EditUsuariosRequiredMessage_rol}">
+                            <f:selectItems value="#{rolController.itemsAvailableSelectOne}"
+                                           var="rolItem"
+                                           itemValue="#{rolItem}"
+                                           itemLabel="#{rolItem.rol}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="UEB" for="UEB" />
+                           <p:selectOneMenu style="width: 387px;background: white;color: #0088a5"  id="UEB" value="#{usuariosController.selected.lugar}" required="true" requiredMessage="El campo UEB es obligatorio">
+                            <f:selectItems value="#{lugarController.itemsAvailableSelectOne}"
+                                           var="lugar"
+                                           itemValue="#{lugar}" itemLabel="#{lugar.nombre}"/>
+                        </p:selectOneMenu>
+                    </h:panelGrid>
+                    <p:commandButton actionListener="#{usuariosController.create}" value="#{bundle.Save}" update="display,:UsuariosListForm:datalist,:growl" oncomplete="handleSubmit(args,'UsuariosCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="UsuariosCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
